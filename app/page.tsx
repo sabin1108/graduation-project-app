@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import LoadingScreen from "@/components/loading-screen"
-import ChatInterface from "@/components/chat-interface"
+import EnhancedChatInterface from "@/components/enhanced-chat-interface"
 
 export default function Home() {
   const [loading, setLoading] = useState(true)
@@ -22,5 +22,5 @@ export default function Home() {
     return <LoadingScreen />
   }
 
-  return <ChatInterface />
+  return <EnhancedChatInterface />
 }
