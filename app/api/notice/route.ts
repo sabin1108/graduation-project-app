@@ -4,8 +4,7 @@ const categoryMap: Record<string, string> = {
   학사: "academic-notices",
   장학: "scholarship-notices",
   일반: "hankyong-notices",
-  학사일정: "academic-schedule",
-  학생식단: "student-meals",
+  학생식당: "student-meals",
   교직원식단: "faculty-meals",
   기숙사식단: "dorm-meals",
 };
@@ -26,7 +25,27 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "서버 응답 오류" }, { status: res.status });
     }
 
-    const data = await res.json();
+    const textData = await res.text();
+
+    // Markdown table parser
+    const lines = textData.split('\n').filter(line => line.trim() !== '');
+    if (lines.length < 2) {
+      return NextResponse.json({ error: "데이터 형식이 올바르지 않습니다." }, { status: 500 });
+    }
+
+    const headers = lines[0].split('|').map(header => header.trim()).filter(header => header !== '');
+    const dataRows = lines.slice(2);
+
+    const parsedData = dataRows.map(row => {
+      const values = row.split('|').map(value => value.trim()).filter(value => value !== '');
+      const rowObject: { [key: string]: any } = {};
+      headers.forEach((header, index) => {
+        rowObject[header] = values[index];
+      });
+      return rowObject;
+    });
+
+    const data = { content: parsedData };
     return NextResponse.json(data);
   } catch (err) {
     console.error("프록시 서버 에러:", err);
