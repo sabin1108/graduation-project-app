@@ -29,7 +29,7 @@ export default function CustomDrawerContent(props: any) {
   return (
     <DrawerContentScrollView 
       {...props} 
-      style={[styles.sidebarContainer, { backgroundColor: theme.neutral.gray800 }]} // Using neutral.gray800 for sidebar background
+      style={[styles.sidebarContainer, { backgroundColor: theme.neutral.gray800 }]}
     >
       <View style={styles.header}>
         <Avatar.Icon size={48} icon="robot" style={{ backgroundColor: theme.secondary.main }} />
@@ -44,9 +44,9 @@ export default function CustomDrawerContent(props: any) {
         
         <List.Item
           title="학사 일정"
-          titleStyle={[styles.menuItemTitle, { color: theme.neutral.gray100 }]} // Adjusted for dark background
+          titleStyle={[styles.menuItemTitle, { color: theme.neutral.gray100 }]}
           style={styles.menuItem}
-          left={() => <List.Icon color={theme.primary.light} icon="calendar" />} // Using primary.light for icons
+          left={() => <List.Icon color={theme.primary.light} icon="calendar" />}
           onPress={() => {
             props.navigation.navigate('modal');
           }}
@@ -72,21 +72,26 @@ export default function CustomDrawerContent(props: any) {
 
         <List.Accordion
           title="학식 메뉴"
-          titleStyle={[styles.menuItemTitle, { color: theme.neutral.gray100 }]}
-          style={styles.menuItem}
-          left={props => <List.Icon {...props} color={theme.primary.light} icon="food" />}>
+          // 💡 다른 항목과 폰트 스타일을 일치시켜 수직 정렬을 맞춥니다.
+          titleStyle={[styles.menuItemTitle, { color: theme.neutral.gray100 }]} 
+          style={styles.menuItem} 
+          theme={{ colors: { background: theme.neutral.gray800 } }} 
+          left={() => <List.Icon color={theme.primary.light} icon="food" />}>
           <List.Item
             title="학생식당"
+            style={{backgroundColor: 'transparent'}} 
             titleStyle={{color: theme.neutral.gray100}}
             onPress={() => handleQuickReply('오늘 학생식당 메뉴 알려줘')}
           />
           <List.Item
             title="기숙사식당"
+            style={{backgroundColor: 'transparent'}}
             titleStyle={{color: theme.neutral.gray100}}
             onPress={() => handleQuickReply('오늘 기숙사식당 메뉴 알려줘')}
           />
           <List.Item
             title="교직원식당"
+            style={{backgroundColor: 'transparent'}}
             titleStyle={{color: theme.neutral.gray100}}
             onPress={() => handleQuickReply('오늘 교직원식당 메뉴 알려줘')}
           />
@@ -121,11 +126,10 @@ export default function CustomDrawerContent(props: any) {
 const styles = StyleSheet.create({
   sidebarContainer: {
     paddingTop: 60,
-    paddingHorizontal: 20,
+    paddingHorizontal: Spacing.md, // 16
   },
   header: {
     paddingVertical: Spacing.xl, // Adjusted from 2xl to xl
-    paddingHorizontal: 0, // Handled by sidebarContainer
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: Spacing.md, // Added margin bottom for spacing
@@ -135,18 +139,19 @@ const styles = StyleSheet.create({
     marginLeft: Spacing.md,
   },
   headerDescription: {
-      ...TextStyles.small, // Using small for description
-      marginLeft: Spacing.md,
+    ...TextStyles.small, // Using small for description
+    marginLeft: Spacing.md,
   },
   menuItem: {
-      paddingVertical: 14,
-      paddingHorizontal: Spacing.md, // 16
-      borderRadius: 12,
-      marginBottom: Spacing.sm, // 8
-      backgroundColor: 'transparent',
+    // 💡 paddingVertical을 14로 다시 적용합니다.
+    paddingVertical: 14, 
+    paddingHorizontal: Spacing.md, // 16
+    borderRadius: 12,
+    marginBottom: Spacing.sm, // 8
+    backgroundColor: 'transparent',
   },
   menuItemTitle: {
-      ...TextStyles.body, // Using body for menu item title
-      color: '#E2E8F0', // Specific color from design guide
+    ...TextStyles.body, // Using body for menu item title
+    color: '#E2E8F0', // Specific color from design guide
   }
 });
