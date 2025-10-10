@@ -2,8 +2,8 @@ import React from 'react';
 import { View, StyleSheet, Pressable, Text } from 'react-native';
 import Markdown from 'react-native-markdown-display';
 import * as Clipboard from 'expo-clipboard';
-import * as Speech from 'expo-speech';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
+import * as WebBrowser from 'expo-web-browser';
 
 import { useAppTheme } from '@/hooks/use-theme-color';
 import { Spacing } from '@/constants/Spacing';
@@ -25,18 +25,39 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
   const theme = useAppTheme();
   const isUser = message.role === 'user';
 
+  const processContent = (content: string) => {
+    const regex = /^\s*(•\s*)?(.+?)\s+\((https?:\/\/[^\)]+)\)$/gm;
+    return content.replace(regex, (match, bullet, text, url) => {
+      return (bullet || '') + `[${text}](${url})\n`;
+    });
+  };
+
+  const processedMessageContent = isUser ? message.content : processContent(message.content);
+
+  // Custom renderer for links
+  const renderLink = (node: any, children: any, parent: any, _: any) => {
+    const href = node.attributes.href;
+
+    const handlePress = () => {
+      WebBrowser.openBrowserAsync(href);
+    };
+
+    return (
+      <Text key={node.key} onPress={handlePress} style={{ color: theme.info }}>
+        {children}
+        <Text> </Text>
+        <Ionicons name="link" size={16} color={theme.info} />
+      </Text>
+    );
+  };
+
+  const rules = {
+    link: renderLink,
+  };
+
   const handleCopy = async () => {
     await Clipboard.setStringAsync(message.content);
     // TODO: Add a toast notification here later
-  };
-
-  const handleSpeak = () => {
-    Speech.isSpeakingAsync().then(isSpeaking => {
-      if (isSpeaking) {
-        Speech.stop();
-      }
-      Speech.speak(message.content, { language: 'ko-KR' });
-    });
   };
 
   const bubbleStyle = isUser 
@@ -54,7 +75,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
   ];
 
   const markdownStyle = {
-    body: {
+    paragraph: {
       ...TextStyles.body, // Using TextStyles.body for message text
       ...userTextStyle,
       ...assistantTextStyle,
@@ -72,21 +93,18 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
 
       <View style={styles.bubbleWrapper}>
         <View style={bubbleStyle}>
-          <Text style={markdownStyle.body}>
-            {message.content}
-          </Text>
+          <Markdown style={markdownStyle} rules={rules}>
+            {processedMessageContent}
+          </Markdown>
         </View>
         <View style={isUser ? styles.userActions : styles.assistantActions}>
             <Text style={timestampStyle}>
-                {new Date(message.timestamp).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}
+                {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
             </Text>
             {!isUser && (
               <View style={styles.iconActions}>
                 <Pressable onPress={handleCopy} style={styles.iconButton}>
                   <MaterialCommunityIcons name="content-copy" size={18} color={theme.neutral.gray600} />
-                </Pressable>
-                <Pressable onPress={handleSpeak} style={styles.iconButton}>
-                  <Ionicons name="volume-high" size={18} color={theme.neutral.gray600} />
                 </Pressable>
               </View>
             )}
