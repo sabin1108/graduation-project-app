@@ -78,10 +78,145 @@ const academicEvents: AcademicEvent[] = [
     startDate: '2025-01-06',
     endDate: '2025-02-27',
     title: '1차 온라인 복학 신청',
-    description: '01.06 (월) ~ 02.27 (목) 1차 온라인 복학 신청',
+    description: '기간: 01.06 (월) ~ 02.27 (목)',
     type: 'academic',
   },
-  // ... more events can be added here
+  {
+    id: 2,
+    startDate: '2025-01-06',
+    endDate: '2025-01-10',
+    title: '전과 및 재입학 신청',
+    description: '기간: 01.06 (월) ~ 01.10 (금)',
+    type: 'academic',
+  },
+  {
+    id: 3,
+    startDate: '2025-01-13',
+    endDate: '2025-01-15',
+    title: '복수, 융합, 연계 전공 신청',
+    description: '기간: 01.13 (월) ~ 01.15 (수)',
+    type: 'registration',
+  },
+  {
+    id: 4,
+    startDate: '2025-01-20',
+    endDate: '2025-01-21',
+    title: '예비 수강신청 (장바구니)',
+    description: '기간: 01.20 (월) ~ 01.21 (화)',
+    type: 'registration',
+  },
+  {
+    id: 5,
+    startDate: '2025-02-21',
+    endDate: '2025-02-21',
+    title: '2024학년도 전기 학위수여식',
+    description: '기간: 02.21 (금)',
+    type: 'ceremony',
+  },
+  {
+    id: 6,
+    startDate: '2025-02-24',
+    endDate: '2025-02-28',
+    title: '2025-1학기 재학생 등록기간',
+    description: '기간: 02.24 (월) ~ 02.28 (금)',
+    type: 'academic',
+  },
+  {
+    id: 7,
+    startDate: '2025-03-04',
+    endDate: '2025-03-04',
+    title: '1학기 개강',
+    description: '기간: 03.04 (화)',
+    type: 'academic',
+  },
+  {
+    id: 8,
+    startDate: '2025-04-15',
+    endDate: '2025-04-15',
+    title: '개교기념일',
+    description: '기간: 04.15 (화)',
+    type: 'holiday',
+  },
+  {
+    id: 9,
+    startDate: '2025-04-23',
+    endDate: '2025-04-29',
+    title: '1학기 중간시험',
+    description: '기간: 04.23 (수) ~ 04.29 (화)',
+    type: 'exam',
+  },
+  {
+    id: 10,
+    startDate: '2025-05-20',
+    endDate: '2025-05-22',
+    title: '한경체전(체육대회)',
+    description: '기간: 05.20 (화) ~ 05.22 (목)',
+    type: 'festival',
+  },
+  {
+    id: 11,
+    startDate: '2025-06-11',
+    endDate: '2025-06-20',
+    title: '1학기 기말시험',
+    description: '기간: 06.11 (수) ~ 06.20 (금)',
+    type: 'exam',
+  },
+  {
+    id: 12,
+    startDate: '2025-06-20',
+    endDate: '2025-06-20',
+    title: '종강',
+    description: '기간: 06.20 (금)',
+    type: 'academic',
+  },
+  {
+    id: 13,
+    startDate: '2025-06-23',
+    endDate: '2025-07-11',
+    title: '하계 계절수업',
+    description: '기간: 06.23 (월) ~ 07.11 (금)',
+    type: 'academic',
+  },
+  {
+    id: 14,
+    startDate: '2025-09-29',
+    endDate: '2025-09-30',
+    title: '한경 대동제 (축제)',
+    description: '기간: 09.29 (월) ~ 09.30 (화)',
+    type: 'festival',
+  },
+  {
+    id: 15,
+    startDate: '2025-10-25',
+    endDate: '2025-10-31',
+    title: '2학기 중간시험',
+    description: '기간: 10.25 (토) ~ 10.31 (금)',
+    type: 'exam',
+  },
+  {
+    id: 16,
+    startDate: '2025-12-13',
+    endDate: '2025-12-19',
+    title: '2학기 기말시험',
+    description: '기간: 12.13 (토) ~ 12.19 (금)',
+    type: 'exam',
+  },
+  {
+    id: 17,
+    startDate: '2025-12-19',
+    endDate: '2025-12-19',
+    title: '종강',
+    description: '기간: 12.19 (금)',
+    type: 'academic',
+  },
+  {
+    id: 18,
+    startDate: '2025-12-22',
+    endDate: '2026-01-13',
+    title: '동계 계절수업',
+    description: '기간: 12.22 (월) ~ 2026.01.13 (화)',
+    type: 'academic',
+  },
 ];
 
 export default function CalendarModalScreen() {
@@ -91,8 +226,8 @@ export default function CalendarModalScreen() {
     format(new Date(), 'yyyy-MM-dd')
   );
 
-  const markedDates = academicEvents.reduce((acc, event) => {
-    const periodColor = theme.primary.main;
+  const markedDates = academicEvents.reduce((acc, event, index) => {
+    const periodColor = Colors.event[index % Colors.event.length];
     const interval = {
       start: startOfDay(parseISO(event.startDate)),
       end: startOfDay(parseISO(event.endDate)),
@@ -105,17 +240,22 @@ export default function CalendarModalScreen() {
       const isStart = isSameDay(day, interval.start);
       const isEnd = isSameDay(day, interval.end);
 
-      acc[dateKey] = {
-        ...acc[dateKey],
-        color: periodColor,
-        textColor: theme.neutral.white,
+      const period = {
         startingDay: isStart,
         endingDay: isEnd,
+        color: periodColor,
+        textColor: theme.neutral.white, // Keep text white for contrast
       };
+
       if (daysInInterval.length === 1) {
-        acc[dateKey].startingDay = true;
-        acc[dateKey].endingDay = true;
+        period.startingDay = true;
+        period.endingDay = true;
       }
+
+      if (!acc[dateKey]) {
+        acc[dateKey] = { periods: [] };
+      }
+      acc[dateKey].periods.push(period);
     });
 
     return acc;
@@ -208,10 +348,14 @@ export default function CalendarModalScreen() {
       <Text style={styles.title}>학사 일정</Text>
 
       <Calendar
-        markingType={'period'}
+        markingType={'multi-period'}
         markedDates={{
           ...markedDates,
-          [selectedDate]: { ...(markedDates[selectedDate] || {}), selected: true, color: theme.secondary.main, disableTouchEvent: true },
+          [selectedDate]: {
+            ...(markedDates[selectedDate] || { periods: [] }),
+            selected: true,
+            disableTouchEvent: true,
+          },
         }}
         onDayPress={(day) => setSelectedDate(day.dateString)}
         theme={calendarTheme}

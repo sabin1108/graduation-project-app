@@ -35,6 +35,17 @@ export const Colors = {
   error: '#EF4444',       // Red
   info: '#3B82F6',        // Blue - using primaryLight
   
+  event: [
+    '#FFADAD', // light red
+    '#FFD6A5', // light orange
+    '#FDFFB6', // light yellow
+    '#CAFFBF', // light green
+    '#9BF6FF', // light cyan
+    '#A0C4FF', // light blue
+    '#BDB2FF', // light purple
+    '#FFC6FF', // light magenta
+  ],
+  
   // Chat-specific Colors
   chat: {
     userBubble: '#3B82F6',        // User message
