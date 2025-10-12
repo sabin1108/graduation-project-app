@@ -52,3 +52,56 @@ export const loadMessages = async (): Promise<Message[]> => {
     return []; // Return empty array on other errors
   }
 };
+
+// --- Font Size Storage ---
+
+const FONT_SIZE_STORAGE_KEY = 'fontSize';
+
+export type FontSize = number;
+
+export const saveFontSize = async (fontSize: FontSize) => {
+  try {
+    await AsyncStorage.setItem(FONT_SIZE_STORAGE_KEY, fontSize.toString());
+  } catch (error) {
+    console.error('Error saving font size to AsyncStorage:', error);
+  }
+};
+
+export const loadFontSize = async (): Promise<FontSize> => {
+  try {
+    const value = await AsyncStorage.getItem(FONT_SIZE_STORAGE_KEY);
+    if (value !== null) {
+      const parsedValue = parseFloat(value);
+      return isNaN(parsedValue) ? 1 : parsedValue;
+    }
+  } catch (error) {
+    console.error('Error loading font size from AsyncStorage:', error);
+  }
+  return 1; // Default font size
+};
+
+// --- Color Scheme Storage ---
+
+const COLOR_SCHEME_STORAGE_KEY = 'colorScheme';
+
+export type ColorScheme = 'light' | 'dark' | 'system';
+
+export const saveColorScheme = async (colorScheme: ColorScheme) => {
+  try {
+    await AsyncStorage.setItem(COLOR_SCHEME_STORAGE_KEY, colorScheme);
+  } catch (error) {
+    console.error('Error saving color scheme to AsyncStorage:', error);
+  }
+};
+
+export const loadColorScheme = async (): Promise<ColorScheme> => {
+  try {
+    const value = await AsyncStorage.getItem(COLOR_SCHEME_STORAGE_KEY);
+    if (value !== null) {
+      return value as ColorScheme;
+    }
+  } catch (error) {
+    console.error('Error loading color scheme from AsyncStorage:', error);
+  }
+  return 'system'; // Default color scheme
+};

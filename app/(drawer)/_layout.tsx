@@ -18,9 +18,6 @@ export default function DrawerLayout() {
         },
         headerTintColor: theme.neutral.white,
         headerLeft: () => <DrawerToggleButton tintColor={theme.neutral.white} />,
-        drawerStyle: {
-          backgroundColor: theme.neutral.gray800,
-        },
       }}
     >
       <Drawer.Screen

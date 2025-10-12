@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, Text } from 'react-native';
-import { Button, Card } from 'react-native-paper';
-import { Calendar, LocaleConfig } from 'react-native-calendars';
 import {
-  format,
   eachDayOfInterval,
+  format,
+  isSameDay,
   isWithinInterval,
   parseISO,
   startOfDay,
-  isSameDay,
 } from 'date-fns';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Calendar, LocaleConfig } from 'react-native-calendars';
+import { Button, Card } from 'react-native-paper';
 
-import { useAppTheme } from '@/hooks/use-theme-color';
 import { Spacing } from '@/constants/Spacing';
-import { TextStyles } from '@/constants/Typography';
 import { Colors } from '@/constants/theme';
+import { useAppTheme } from '@/hooks/use-theme-color';
 
 // Setup for react-native-calendars
 LocaleConfig.locales['ko'] = {
@@ -225,7 +224,6 @@ export default function CalendarModalScreen() {
   const [selectedDate, setSelectedDate] = useState(
     format(new Date(), 'yyyy-MM-dd')
   );
-
   const markedDates = academicEvents.reduce((acc, event, index) => {
     const periodColor = Colors.event[index % Colors.event.length];
     const interval = {
@@ -274,7 +272,6 @@ export default function CalendarModalScreen() {
       return false;
     }
   });
-
   const styles = StyleSheet.create({
     container: {
       flex: 1,

@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { PaperProvider, MD3LightTheme, MD3DarkTheme } from 'react-native-paper';
 import { Colors, DarkColors } from '@/constants/theme';
+import { FontSizeProvider } from '@/hooks/use-font-size';
 
 // Create a mapping from the custom theme to what react-navigation expects
 const navTheme = {
@@ -101,11 +102,14 @@ export default function RootLayout() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <PaperProvider theme={rnPaperTheme}>
         <ThemeProvider value={navigationTheme}>
-          <Stack>
-            <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-          </Stack>
-          <StatusBar style={isDarkMode ? 'light' : 'dark'} />
+          <FontSizeProvider>
+            <Stack>
+              <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
+              <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+              <Stack.Screen name="settings" options={{ presentation: 'modal', title: '설정' }} />
+            </Stack>
+            <StatusBar style={isDarkMode ? 'light' : 'dark'} />
+          </FontSizeProvider>
         </ThemeProvider>
       </PaperProvider>
     </GestureHandlerRootView>

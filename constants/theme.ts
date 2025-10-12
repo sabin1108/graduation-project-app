@@ -64,6 +64,20 @@ export const Colors = {
     secondaryHover: '#22D3EE',    // Lighter Cyan
     disabled: '#D1D5DB',          // Gray
   },
+
+  // Event Colors for Calendar
+  event: [
+    '#FF6B6B', // Red
+    '#FFD166', // Yellow
+    '#06D6A0', // Green
+    '#118AB2', // Blue
+    '#073B4C', // Navy
+    '#EE6C4D', // Orange
+    '#293241', // Dark Blue
+    '#98C1D9', // Light Blue
+    '#3D5A80', // Slate
+    '#E0FBFC', // Cyan
+  ],
 };
 
 export const DarkColors = {
@@ -121,4 +135,18 @@ export const DarkColors = {
     secondaryHover: '#22D3EE',
     disabled: '#4B5563',
   },
+
+  // Event Colors for Calendar
+  event: [
+    '#FF6B6B', // Red
+    '#FFD166', // Yellow
+    '#06D6A0', // Green
+    '#118AB2', // Blue
+    '#073B4C', // Navy
+    '#EE6C4D', // Orange
+    '#293241', // Dark Blue
+    '#98C1D9', // Light Blue
+    '#3D5A80', // Slate
+    '#E0FBFC', // Cyan
+  ],
 };

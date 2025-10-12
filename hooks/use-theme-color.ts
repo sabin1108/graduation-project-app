@@ -1,28 +1,32 @@
-import { Colors } from '@/constants/theme';
+import { useColorScheme } from './use-color-scheme';
+import { Colors, DarkColors } from '@/constants/theme';
 
 /**
- * A hook that returns the appropriate color palette.
- * Since we removed dark mode, it always returns the light theme.
+ * A hook that returns the appropriate color palette based on the current color scheme.
  */
 export function useAppTheme() {
-  return Colors;
+  const colorScheme = useColorScheme();
+  return colorScheme === 'dark' ? DarkColors : Colors;
 }
 
 type ThemeProps = {
   light?: string;
-  dark?: string; // Kept for prop compatibility, but not used
+  dark?: string;
 };
 
 export function useThemeColor(
   props: ThemeProps,
-  colorName: keyof typeof Colors.neutral
+  colorName: keyof typeof Colors.neutral | keyof typeof DarkColors.neutral
 ) {
-  const colorFromProps = props.light;
+  const colorScheme = useColorScheme();
+  const colorFromProps = props[colorScheme];
 
   if (colorFromProps) {
     return colorFromProps;
   } else {
     // Fallback to the theme's color if not provided in props
-    return Colors.neutral[colorName];
+    const themeColors = colorScheme === 'dark' ? DarkColors : Colors;
+    // @ts-ignore
+    return themeColors.neutral[colorName];
   }
 }

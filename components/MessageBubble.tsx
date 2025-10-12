@@ -1,13 +1,13 @@
-import React from 'react';
-import { View, StyleSheet, Pressable, Text } from 'react-native';
-import Markdown from 'react-native-markdown-display';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Clipboard from 'expo-clipboard';
-import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
+import React from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import Markdown from 'react-native-markdown-display';
 
-import { useAppTheme } from '@/hooks/use-theme-color';
 import { Spacing } from '@/constants/Spacing';
-import { TextStyles } from '@/constants/Typography';
+import { useTextStyles } from '@/hooks/use-font-size';
+import { useAppTheme } from '@/hooks/use-theme-color';
 
 // Define the Message interface locally for this component
 interface Message {
@@ -23,6 +23,7 @@ interface MessageBubbleProps {
 
 export default function MessageBubble({ message }: MessageBubbleProps) {
   const theme = useAppTheme();
+  const TextStyles = useTextStyles();
   const isUser = message.role === 'user';
 
   const processContent = (content: string) => {

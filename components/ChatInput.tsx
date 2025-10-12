@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import { useAppTheme } from '@/hooks/use-theme-color';
 import { Spacing } from '@/constants/Spacing';
-import { TextStyles } from '@/constants/Typography';
+import { useTextStyles } from '@/hooks/use-font-size';
 
 interface ChatInputProps {
   onSendMessage: (message: string) => void;
@@ -12,6 +12,7 @@ interface ChatInputProps {
 
 export default function ChatInput({ onSendMessage }: ChatInputProps) {
   const theme = useAppTheme();
+  const TextStyles = useTextStyles();
   const [message, setMessage] = useState('');
 
   const handleSendMessage = () => {
