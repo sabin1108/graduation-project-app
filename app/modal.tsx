@@ -15,6 +15,7 @@ import { Button, Card } from 'react-native-paper';
 
 import { Spacing } from '@/constants/Spacing';
 import { Colors } from '@/constants/theme';
+import { TextStyles } from '@/constants/Typography';
 import { useAppTheme } from '@/hooks/use-theme-color';
 
 // Setup for react-native-calendars
@@ -224,7 +225,19 @@ export default function CalendarModalScreen() {
   const [selectedDate, setSelectedDate] = useState(
     format(new Date(), 'yyyy-MM-dd')
   );
-  const markedDates = academicEvents.reduce((acc, event, index) => {
+  const markedDates = academicEvents.reduce<
+    Record<
+      string,
+      {
+        periods: {
+          color: string;
+          textColor: string;
+          startingDay?: boolean;
+          endingDay?: boolean;
+        }[];
+      }
+    >
+  >((acc, event, index) => {
     const periodColor = Colors.event[index % Colors.event.length];
     const interval = {
       start: startOfDay(parseISO(event.startDate)),
@@ -238,15 +251,20 @@ export default function CalendarModalScreen() {
       const isStart = isSameDay(day, interval.start);
       const isEnd = isSameDay(day, interval.end);
 
-      const period = {
-        startingDay: isStart,
-        endingDay: isEnd,
+      const period: {
+        color: string;
+        textColor: string;
+        startingDay?: boolean;
+        endingDay?: boolean;
+      } = {
         color: periodColor,
         textColor: theme.neutral.white, // Keep text white for contrast
       };
 
-      if (daysInInterval.length === 1) {
+      if (isStart) {
         period.startingDay = true;
+      }
+      if (isEnd) {
         period.endingDay = true;
       }
 
@@ -257,7 +275,7 @@ export default function CalendarModalScreen() {
     });
 
     return acc;
-  }, {} as any);
+  }, {});
 
   const eventsForSelectedDate = academicEvents.filter((event) => {
     try {
@@ -305,10 +323,10 @@ export default function CalendarModalScreen() {
       color: theme.neutral.gray600,
     },
     noEvents: {
+      ...TextStyles.body,
       textAlign: 'center',
       color: theme.neutral.gray400,
       marginTop: Spacing.xl,
-      ...TextStyles.body,
     },
     closeButton: {
       marginTop: Spacing.lg,
@@ -317,6 +335,7 @@ export default function CalendarModalScreen() {
     },
     closeButtonText: {
       ...TextStyles.button,
+      textTransform: 'none',
     },
   });
 

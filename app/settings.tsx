@@ -1,32 +1,26 @@
 
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Share, Alert } from 'react-native';
-import { Button, Card, Title, Paragraph, SegmentedButtons } from 'react-native-paper';
+import { Button, Card, Title, Paragraph } from 'react-native-paper';
 import { useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import Slider from '@react-native-community/slider';
 
-import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useAppTheme } from '@/hooks/use-theme-color';
 import { Spacing } from '@/constants/Spacing';
 import { TextStyles } from '@/constants/Typography';
-import { loadMessages, saveFontSize, loadFontSize, FontSize, saveColorScheme, loadColorScheme, ColorScheme } from '@/lib/storage';
+import { loadMessages, saveFontSize, loadFontSize, FontSize } from '@/lib/storage';
 
 export default function SettingsScreen() {
   const theme = useAppTheme();
   const router = useRouter();
   const [fontSize, setFontSize] = useState<FontSize>(1);
-  const [colorScheme, setColorScheme] = useState<ColorScheme>('system');
-  const effectiveColorScheme = useColorScheme();
-  const statusBarTheme = effectiveColorScheme === 'dark' ? 'light' : 'dark';
 
 
   useEffect(() => {
     const fetchSettings = async () => {
       const storedSize = await loadFontSize();
       setFontSize(storedSize);
-      const storedScheme = await loadColorScheme();
-      setColorScheme(storedScheme);
     };
     fetchSettings();
   }, []);
@@ -62,12 +56,6 @@ ${msg.content}`
     await saveFontSize(value);
   };
 
-  const handleColorSchemeChange = async (value: string) => {
-    const newScheme = value as ColorScheme;
-    setColorScheme(newScheme);
-    await saveColorScheme(newScheme);
-  };
-
   // Dynamic styles that depend on the theme
   const dynamicStyles = {
     container: {
@@ -86,26 +74,8 @@ ${msg.content}`
 
   return (
     <View style={[styles.container, dynamicStyles.container]}>
-      <StatusBar style={statusBarTheme} />
+      <StatusBar style="dark" />
       <Title style={[styles.title, dynamicStyles.title]}>설정</Title>
-
-      <Card style={[styles.card, dynamicStyles.card]}>
-        <Card.Content>
-          <Title>화면 테마</Title>
-          <Paragraph>앱의 전체적인 테마를 설정합니다.</Paragraph>
-        </Card.Content>
-        <Card.Content>
-          <SegmentedButtons
-            value={colorScheme}
-            onValueChange={handleColorSchemeChange}
-            buttons={[
-              { value: 'light', label: '라이트' },
-              { value: 'dark', label: '다크' },
-              { value: 'system', label: '시스템 설정' },
-            ]}
-          />
-        </Card.Content>
-      </Card>
 
       <Card style={[styles.card, dynamicStyles.card]}>
         <Card.Content>

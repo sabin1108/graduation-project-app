@@ -79,29 +79,3 @@ export const loadFontSize = async (): Promise<FontSize> => {
   }
   return 1; // Default font size
 };
-
-// --- Color Scheme Storage ---
-
-const COLOR_SCHEME_STORAGE_KEY = 'colorScheme';
-
-export type ColorScheme = 'light' | 'dark' | 'system';
-
-export const saveColorScheme = async (colorScheme: ColorScheme) => {
-  try {
-    await AsyncStorage.setItem(COLOR_SCHEME_STORAGE_KEY, colorScheme);
-  } catch (error) {
-    console.error('Error saving color scheme to AsyncStorage:', error);
-  }
-};
-
-export const loadColorScheme = async (): Promise<ColorScheme> => {
-  try {
-    const value = await AsyncStorage.getItem(COLOR_SCHEME_STORAGE_KEY);
-    if (value !== null) {
-      return value as ColorScheme;
-    }
-  } catch (error) {
-    console.error('Error loading color scheme from AsyncStorage:', error);
-  }
-  return 'system'; // Default color scheme
-};

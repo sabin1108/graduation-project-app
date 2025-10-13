@@ -14,7 +14,7 @@ export default function CustomDrawerContent(props: any) {
   const TextStyles = useTextStyles();
   const colorScheme = useColorScheme();
 
-  const isDarkMode = colorScheme === 'dark';
+  const isDarkMode = true;
 
   const styles = StyleSheet.create({
     sidebarContainer: {
