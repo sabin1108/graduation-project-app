@@ -95,7 +95,7 @@ export const createTextStyles = (size: number = 1) => {
       color: Colors.neutral.white,
       textTransform: 'none',
     },
-  };
+  } as const;
 };
 
 export const TextStyles = createTextStyles(); // Default export for existing components

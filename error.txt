@@ -1,0 +1,449 @@
+[{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type '{ color: string; fontFamily: \"Pretendard-Medium\"; fontSize: number; lineHeight: number; letterSpacing: number; textTransform: string; }' is not assignable to type 'ViewStyle | TextStyle | ImageStyle'.\n  Type '{ color: string; fontFamily: \"Pretendard-Medium\"; fontSize: number; lineHeight: number; letterSpacing: number; textTransform: string; }' is not assignable to type 'TextStyle'.\n    Types of property 'textTransform' are incompatible.\n      Type 'string' is not assignable to type '\"none\" | \"uppercase\" | \"capitalize\" | \"lowercase\" | undefined'.",
+	"source": "ts",
+	"startLineNumber": 53,
+	"startColumn": 5,
+	"endLineNumber": 53,
+	"endColumn": 18,
+	"relatedInformation": [
+		{
+			"startLineNumber": 53,
+			"startColumn": 5,
+			"endLineNumber": 56,
+			"endColumn": 6,
+			"message": "The expected type comes from property 'listSubheader' which is declared here on type 'NamedStyles<any> | (NamedStyles<{ sidebarContainer: { paddingTop: number; paddingHorizontal: 16; backgroundColor: string; }; header: { paddingVertical: 32; flexDirection: \"row\"; alignItems: \"center\"; marginBottom: 16; }; ... 4 more ...; listSubheader: { ...; }; }> & NamedStyles<...>)'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2769",
+	"severity": 8,
+	"message": "No overload matches this call.\n  Overload 1 of 2, '(props: ViewProps): View', gave the following error.\n    Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type 'StyleProp<ViewStyle>'.\n      Type 'TextStyle' is not assignable to type 'StyleProp<ViewStyle>'.\n        Type 'TextStyle' is not assignable to type 'ViewStyle'.\n          Types of property 'cursor' are incompatible.\n            Type 'string | undefined' is not assignable to type 'CursorValue | undefined'.\n              Type 'string' is not assignable to type 'CursorValue | undefined'.\n  Overload 2 of 2, '(props: ViewProps, context: any): View', gave the following error.\n    Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type 'StyleProp<ViewStyle>'.\n      Type 'TextStyle' is not assignable to type 'StyleProp<ViewStyle>'.\n        Type 'TextStyle' is not assignable to type 'ViewStyle'.\n          Types of property 'cursor' are incompatible.\n            Type 'string | undefined' is not assignable to type 'CursorValue | undefined'.\n              Type 'string' is not assignable to type 'CursorValue | undefined'.",
+	"source": "ts",
+	"startLineNumber": 77,
+	"startColumn": 13,
+	"endLineNumber": 77,
+	"endColumn": 18,
+	"relatedInformation": [
+		{
+			"startLineNumber": 212,
+			"startColumn": 3,
+			"endLineNumber": 212,
+			"endColumn": 8,
+			"message": "The expected type comes from property 'style' which is declared here on type 'IntrinsicAttributes & IntrinsicClassAttributes<View> & Readonly<ViewProps>'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts"
+		},
+		{
+			"startLineNumber": 212,
+			"startColumn": 3,
+			"endLineNumber": 212,
+			"endColumn": 8,
+			"message": "The expected type comes from property 'style' which is declared here on type 'IntrinsicAttributes & IntrinsicClassAttributes<View> & Readonly<ViewProps>'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type 'StyleProp<TextStyle>'.\n  Type 'ViewStyle' is not assignable to type 'StyleProp<TextStyle>'.\n    Type 'ViewStyle' is not assignable to type 'TextStyle'.\n      Types of property 'userSelect' are incompatible.\n        Type 'string | undefined' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.\n          Type 'string' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.",
+	"source": "ts",
+	"startLineNumber": 84,
+	"startColumn": 17,
+	"endLineNumber": 84,
+	"endColumn": 22,
+	"relatedInformation": [
+		{
+			"startLineNumber": 185,
+			"startColumn": 3,
+			"endLineNumber": 185,
+			"endColumn": 8,
+			"message": "The expected type comes from property 'style' which is declared here on type 'IntrinsicAttributes & TextProps & { variant?: VariantProp<never> | undefined; children: ReactNode; theme?: ThemeProp | undefined; style?: StyleProp<...>; } & { ...; }'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native/Libraries/Text/Text.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type 'StyleProp<TextStyle>'.\n  Type 'ViewStyle' is not assignable to type 'StyleProp<TextStyle>'.\n    Type 'ViewStyle' is not assignable to type 'TextStyle'.\n      Types of property 'userSelect' are incompatible.\n        Type 'string | undefined' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.\n          Type 'string' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.",
+	"source": "ts",
+	"startLineNumber": 85,
+	"startColumn": 17,
+	"endLineNumber": 85,
+	"endColumn": 22,
+	"relatedInformation": [
+		{
+			"startLineNumber": 185,
+			"startColumn": 3,
+			"endLineNumber": 185,
+			"endColumn": 8,
+			"message": "The expected type comes from property 'style' which is declared here on type 'IntrinsicAttributes & TextProps & { variant?: VariantProp<never> | undefined; children: ReactNode; theme?: ThemeProp | undefined; style?: StyleProp<...>; } & { ...; }'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native/Libraries/Text/Text.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type 'StyleProp<TextStyle>'.\n  Type 'ViewStyle' is not assignable to type 'StyleProp<TextStyle>'.\n    Type 'ViewStyle' is not assignable to type 'TextStyle'.\n      Types of property 'userSelect' are incompatible.\n        Type 'string | undefined' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.\n          Type 'string' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.",
+	"source": "ts",
+	"startLineNumber": 90,
+	"startColumn": 25,
+	"endLineNumber": 90,
+	"endColumn": 30,
+	"relatedInformation": [
+		{
+			"startLineNumber": 185,
+			"startColumn": 3,
+			"endLineNumber": 185,
+			"endColumn": 8,
+			"message": "The expected type comes from property 'style' which is declared here on type 'IntrinsicAttributes & TextProps & { variant?: VariantProp<never> | undefined; children: ReactNode; theme?: ThemeProp | undefined; style?: StyleProp<...>; } & { ...; } & { ...; }'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native/Libraries/Text/Text.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type 'StyleProp<TextStyle>'.\n  Type 'ViewStyle' is not assignable to type 'StyleProp<TextStyle>'.\n    Type 'ViewStyle' is not assignable to type 'TextStyle'.\n      Types of property 'userSelect' are incompatible.\n        Type 'string | undefined' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.\n          Type 'string' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.",
+	"source": "ts",
+	"startLineNumber": 94,
+	"startColumn": 11,
+	"endLineNumber": 94,
+	"endColumn": 21,
+	"relatedInformation": [
+		{
+			"startLineNumber": 64,
+			"startColumn": 5,
+			"endLineNumber": 64,
+			"endColumn": 15,
+			"message": "The expected type comes from property 'titleStyle' which is declared here on type 'IntrinsicAttributes & $RemoveChildren<ForwardRefComponent<View, Props> & { supported: boolean; }> & { ...; } & RefAttributes<...>'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native-paper/lib/typescript/components/List/ListItem.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type '(((false | \"\" | ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>)) & (false | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<....'.\n  Type 'TextStyle' is not assignable to type '(((false | \"\" | ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>)) & (false | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<....'.\n    Type 'TextStyle' is not assignable to type 'ViewStyle | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | (false & ViewStyle) | ... 170 more ... | (((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>) & ... 1 more ... & RecursiveArray<...>)'.\n      Type 'TextStyle' is not assignable to type '((state: PressableStateCallbackType) => StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>) & ((state: PressableStateCallbackType) => StyleProp<...>) & ViewStyle'.\n        Type 'TextStyle' is not assignable to type '(state: PressableStateCallbackType) => StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>'.\n          Type 'TextStyle' provides no match for the signature '(state: PressableStateCallbackType): StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>'.",
+	"source": "ts",
+	"startLineNumber": 95,
+	"startColumn": 11,
+	"endLineNumber": 95,
+	"endColumn": 16,
+	"relatedInformation": [
+		{
+			"startLineNumber": 10,
+			"startColumn": 5,
+			"endLineNumber": 10,
+			"endColumn": 10,
+			"message": "The expected type comes from property 'style' which is declared here on type 'IntrinsicAttributes & $RemoveChildren<ForwardRefComponent<View, Props> & { supported: boolean; }> & { ...; } & RefAttributes<...>'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native-paper/lib/typescript/components/TouchableRipple/Pressable.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type 'StyleProp<TextStyle>'.\n  Type 'ViewStyle' is not assignable to type 'StyleProp<TextStyle>'.\n    Type 'ViewStyle' is not assignable to type 'TextStyle'.\n      Types of property 'userSelect' are incompatible.\n        Type 'string | undefined' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.\n          Type 'string' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.",
+	"source": "ts",
+	"startLineNumber": 104,
+	"startColumn": 11,
+	"endLineNumber": 104,
+	"endColumn": 21,
+	"relatedInformation": [
+		{
+			"startLineNumber": 64,
+			"startColumn": 5,
+			"endLineNumber": 64,
+			"endColumn": 15,
+			"message": "The expected type comes from property 'titleStyle' which is declared here on type 'IntrinsicAttributes & $RemoveChildren<ForwardRefComponent<View, Props> & { supported: boolean; }> & { ...; } & RefAttributes<...>'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native-paper/lib/typescript/components/List/ListItem.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type '(((false | \"\" | ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>)) & (false | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<....'.\n  Type 'TextStyle' is not assignable to type '(((false | \"\" | ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>)) & (false | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<....'.\n    Type 'TextStyle' is not assignable to type 'ViewStyle | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | (false & ViewStyle) | ... 170 more ... | (((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>) & ... 1 more ... & RecursiveArray<...>)'.\n      Type 'TextStyle' is not assignable to type '((state: PressableStateCallbackType) => StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>) & ((state: PressableStateCallbackType) => StyleProp<...>) & ViewStyle'.\n        Type 'TextStyle' is not assignable to type '(state: PressableStateCallbackType) => StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>'.\n          Type 'TextStyle' provides no match for the signature '(state: PressableStateCallbackType): StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>'.",
+	"source": "ts",
+	"startLineNumber": 105,
+	"startColumn": 11,
+	"endLineNumber": 105,
+	"endColumn": 16,
+	"relatedInformation": [
+		{
+			"startLineNumber": 10,
+			"startColumn": 5,
+			"endLineNumber": 10,
+			"endColumn": 10,
+			"message": "The expected type comes from property 'style' which is declared here on type 'IntrinsicAttributes & $RemoveChildren<ForwardRefComponent<View, Props> & { supported: boolean; }> & { ...; } & RefAttributes<...>'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native-paper/lib/typescript/components/TouchableRipple/Pressable.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type 'StyleProp<TextStyle>'.\n  Type 'ViewStyle' is not assignable to type 'StyleProp<TextStyle>'.\n    Type 'ViewStyle' is not assignable to type 'TextStyle'.\n      Types of property 'userSelect' are incompatible.\n        Type 'string | undefined' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.\n          Type 'string' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.",
+	"source": "ts",
+	"startLineNumber": 114,
+	"startColumn": 11,
+	"endLineNumber": 114,
+	"endColumn": 21,
+	"relatedInformation": [
+		{
+			"startLineNumber": 64,
+			"startColumn": 5,
+			"endLineNumber": 64,
+			"endColumn": 15,
+			"message": "The expected type comes from property 'titleStyle' which is declared here on type 'IntrinsicAttributes & $RemoveChildren<ForwardRefComponent<View, Props> & { supported: boolean; }> & { ...; } & RefAttributes<...>'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native-paper/lib/typescript/components/List/ListItem.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type '(((false | \"\" | ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>)) & (false | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<....'.\n  Type 'TextStyle' is not assignable to type '(((false | \"\" | ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>)) & (false | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<....'.\n    Type 'TextStyle' is not assignable to type 'ViewStyle | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | (false & ViewStyle) | ... 170 more ... | (((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>) & ... 1 more ... & RecursiveArray<...>)'.\n      Type 'TextStyle' is not assignable to type '((state: PressableStateCallbackType) => StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>) & ((state: PressableStateCallbackType) => StyleProp<...>) & ViewStyle'.\n        Type 'TextStyle' is not assignable to type '(state: PressableStateCallbackType) => StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>'.\n          Type 'TextStyle' provides no match for the signature '(state: PressableStateCallbackType): StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>'.",
+	"source": "ts",
+	"startLineNumber": 115,
+	"startColumn": 11,
+	"endLineNumber": 115,
+	"endColumn": 16,
+	"relatedInformation": [
+		{
+			"startLineNumber": 10,
+			"startColumn": 5,
+			"endLineNumber": 10,
+			"endColumn": 10,
+			"message": "The expected type comes from property 'style' which is declared here on type 'IntrinsicAttributes & $RemoveChildren<ForwardRefComponent<View, Props> & { supported: boolean; }> & { ...; } & RefAttributes<...>'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native-paper/lib/typescript/components/TouchableRipple/Pressable.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type 'StyleProp<TextStyle>'.\n  Type 'ViewStyle' is not assignable to type 'StyleProp<TextStyle>'.\n    Type 'ViewStyle' is not assignable to type 'TextStyle'.\n      Types of property 'userSelect' are incompatible.\n        Type 'string | undefined' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.\n          Type 'string' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.",
+	"source": "ts",
+	"startLineNumber": 123,
+	"startColumn": 11,
+	"endLineNumber": 123,
+	"endColumn": 21,
+	"relatedInformation": [
+		{
+			"startLineNumber": 64,
+			"startColumn": 5,
+			"endLineNumber": 64,
+			"endColumn": 15,
+			"message": "The expected type comes from property 'titleStyle' which is declared here on type 'IntrinsicAttributes & $RemoveChildren<ForwardRefComponent<View, Props> & { supported: boolean; }> & { ...; } & RefAttributes<...>'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native-paper/lib/typescript/components/List/ListItem.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type '(((false | \"\" | ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>)) & (false | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<....'.\n  Type 'TextStyle' is not assignable to type '(((false | \"\" | ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>)) & (false | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<....'.\n    Type 'TextStyle' is not assignable to type 'ViewStyle | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | (false & ViewStyle) | ... 170 more ... | (((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>) & ... 1 more ... & RecursiveArray<...>)'.\n      Type 'TextStyle' is not assignable to type '((state: PressableStateCallbackType) => StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>) & ((state: PressableStateCallbackType) => StyleProp<...>) & ViewStyle'.\n        Type 'TextStyle' is not assignable to type '(state: PressableStateCallbackType) => StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>'.\n          Type 'TextStyle' provides no match for the signature '(state: PressableStateCallbackType): StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>'.",
+	"source": "ts",
+	"startLineNumber": 124,
+	"startColumn": 11,
+	"endLineNumber": 124,
+	"endColumn": 16,
+	"relatedInformation": [
+		{
+			"startLineNumber": 10,
+			"startColumn": 5,
+			"endLineNumber": 10,
+			"endColumn": 10,
+			"message": "The expected type comes from property 'style' which is declared here on type 'IntrinsicAttributes & $RemoveChildren<ForwardRefComponent<View, Props> & { supported: boolean; }> & { ...; } & RefAttributes<...>'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native-paper/lib/typescript/components/TouchableRipple/Pressable.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type 'StyleProp<TextStyle>'.\n  Type 'ViewStyle' is not assignable to type 'StyleProp<TextStyle>'.\n    Type 'ViewStyle' is not assignable to type 'TextStyle'.\n      Types of property 'userSelect' are incompatible.\n        Type 'string | undefined' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.\n          Type 'string' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.",
+	"source": "ts",
+	"startLineNumber": 133,
+	"startColumn": 11,
+	"endLineNumber": 133,
+	"endColumn": 21,
+	"relatedInformation": [
+		{
+			"startLineNumber": 74,
+			"startColumn": 5,
+			"endLineNumber": 74,
+			"endColumn": 15,
+			"message": "The expected type comes from property 'titleStyle' which is declared here on type 'IntrinsicAttributes & Props'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native-paper/lib/typescript/components/List/ListAccordion.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type 'StyleProp<ViewStyle>'.\n  Type 'TextStyle' is not assignable to type 'StyleProp<ViewStyle>'.\n    Type 'TextStyle' is not assignable to type 'ViewStyle'.\n      Types of property 'cursor' are incompatible.\n        Type 'string | undefined' is not assignable to type 'CursorValue | undefined'.\n          Type 'string' is not assignable to type 'CursorValue | undefined'.",
+	"source": "ts",
+	"startLineNumber": 134,
+	"startColumn": 11,
+	"endLineNumber": 134,
+	"endColumn": 16,
+	"relatedInformation": [
+		{
+			"startLineNumber": 62,
+			"startColumn": 5,
+			"endLineNumber": 62,
+			"endColumn": 10,
+			"message": "The expected type comes from property 'style' which is declared here on type 'IntrinsicAttributes & Props'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native-paper/lib/typescript/components/List/ListAccordion.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type 'StyleProp<TextStyle>'.\n  Type 'ViewStyle' is not assignable to type 'StyleProp<TextStyle>'.\n    Type 'ViewStyle' is not assignable to type 'TextStyle'.\n      Types of property 'userSelect' are incompatible.\n        Type 'string | undefined' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.\n          Type 'string' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.",
+	"source": "ts",
+	"startLineNumber": 162,
+	"startColumn": 25,
+	"endLineNumber": 162,
+	"endColumn": 30,
+	"relatedInformation": [
+		{
+			"startLineNumber": 185,
+			"startColumn": 3,
+			"endLineNumber": 185,
+			"endColumn": 8,
+			"message": "The expected type comes from property 'style' which is declared here on type 'IntrinsicAttributes & TextProps & { variant?: VariantProp<never> | undefined; children: ReactNode; theme?: ThemeProp | undefined; style?: StyleProp<...>; } & { ...; } & { ...; }'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native/Libraries/Text/Text.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type 'StyleProp<TextStyle>'.\n  Type 'ViewStyle' is not assignable to type 'StyleProp<TextStyle>'.\n    Type 'ViewStyle' is not assignable to type 'TextStyle'.\n      Types of property 'userSelect' are incompatible.\n        Type 'string | undefined' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.\n          Type 'string' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.",
+	"source": "ts",
+	"startLineNumber": 166,
+	"startColumn": 11,
+	"endLineNumber": 166,
+	"endColumn": 21,
+	"relatedInformation": [
+		{
+			"startLineNumber": 64,
+			"startColumn": 5,
+			"endLineNumber": 64,
+			"endColumn": 15,
+			"message": "The expected type comes from property 'titleStyle' which is declared here on type 'IntrinsicAttributes & $RemoveChildren<ForwardRefComponent<View, Props> & { supported: boolean; }> & { ...; } & RefAttributes<...>'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native-paper/lib/typescript/components/List/ListItem.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type '(((false | \"\" | ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>)) & (false | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<....'.\n  Type 'TextStyle' is not assignable to type '(((false | \"\" | ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>)) & (false | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<....'.\n    Type 'TextStyle' is not assignable to type 'ViewStyle | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | (false & ViewStyle) | ... 170 more ... | (((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>) & ... 1 more ... & RecursiveArray<...>)'.\n      Type 'TextStyle' is not assignable to type '((state: PressableStateCallbackType) => StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>) & ((state: PressableStateCallbackType) => StyleProp<...>) & ViewStyle'.\n        Type 'TextStyle' is not assignable to type '(state: PressableStateCallbackType) => StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>'.\n          Type 'TextStyle' provides no match for the signature '(state: PressableStateCallbackType): StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>'.",
+	"source": "ts",
+	"startLineNumber": 167,
+	"startColumn": 11,
+	"endLineNumber": 167,
+	"endColumn": 16,
+	"relatedInformation": [
+		{
+			"startLineNumber": 10,
+			"startColumn": 5,
+			"endLineNumber": 10,
+			"endColumn": 10,
+			"message": "The expected type comes from property 'style' which is declared here on type 'IntrinsicAttributes & $RemoveChildren<ForwardRefComponent<View, Props> & { supported: boolean; }> & { ...; } & RefAttributes<...>'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native-paper/lib/typescript/components/TouchableRipple/Pressable.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type 'StyleProp<TextStyle>'.\n  Type 'ViewStyle' is not assignable to type 'StyleProp<TextStyle>'.\n    Type 'ViewStyle' is not assignable to type 'TextStyle'.\n      Types of property 'userSelect' are incompatible.\n        Type 'string | undefined' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.\n          Type 'string' is not assignable to type '\"none\" | \"auto\" | \"contain\" | \"text\" | \"all\" | undefined'.",
+	"source": "ts",
+	"startLineNumber": 174,
+	"startColumn": 11,
+	"endLineNumber": 174,
+	"endColumn": 21,
+	"relatedInformation": [
+		{
+			"startLineNumber": 64,
+			"startColumn": 5,
+			"endLineNumber": 64,
+			"endColumn": 15,
+			"message": "The expected type comes from property 'titleStyle' which is declared here on type 'IntrinsicAttributes & $RemoveChildren<ForwardRefComponent<View, Props> & { supported: boolean; }> & { ...; } & RefAttributes<...>'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native-paper/lib/typescript/components/List/ListItem.d.ts"
+		}
+	],
+	"origin": "extHost1"
+},{
+	"resource": "/c:/Users/sabin/Desktop/HKapp/components/Sidebar.tsx",
+	"owner": "typescript",
+	"code": "2322",
+	"severity": 8,
+	"message": "Type 'ViewStyle | TextStyle | ImageStyle' is not assignable to type '(((false | \"\" | ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>)) & (false | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<....'.\n  Type 'TextStyle' is not assignable to type '(((false | \"\" | ViewStyle | RegisteredStyle<ViewStyle> | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>)) & (false | ... 4 more ... | ((state: PressableStateCallbackType) => StyleProp<....'.\n    Type 'TextStyle' is not assignable to type 'ViewStyle | RecursiveArray<ViewStyle | Falsy | RegisteredStyle<ViewStyle>> | (false & ViewStyle) | ... 170 more ... | (((state: PressableStateCallbackType) => StyleProp<...> | ... 3 more ... | WithAnimatedArray<...>) & ... 1 more ... & RecursiveArray<...>)'.\n      Type 'TextStyle' is not assignable to type '((state: PressableStateCallbackType) => StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>) & ((state: PressableStateCallbackType) => StyleProp<...>) & ViewStyle'.\n        Type 'TextStyle' is not assignable to type '(state: PressableStateCallbackType) => StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>'.\n          Type 'TextStyle' provides no match for the signature '(state: PressableStateCallbackType): StyleProp<ViewStyle> | WithAnimatedObject<ViewStyle> | Value | AnimatedInterpolation<...> | WithAnimatedArray<...>'.",
+	"source": "ts",
+	"startLineNumber": 175,
+	"startColumn": 11,
+	"endLineNumber": 175,
+	"endColumn": 16,
+	"relatedInformation": [
+		{
+			"startLineNumber": 10,
+			"startColumn": 5,
+			"endLineNumber": 10,
+			"endColumn": 10,
+			"message": "The expected type comes from property 'style' which is declared here on type 'IntrinsicAttributes & $RemoveChildren<ForwardRefComponent<View, Props> & { supported: boolean; }> & { ...; } & RefAttributes<...>'",
+			"resource": "/c:/Users/sabin/Desktop/HKapp/node_modules/react-native-paper/lib/typescript/components/TouchableRipple/Pressable.d.ts"
+		}
+	],
+	"origin": "extHost1"
+}]
