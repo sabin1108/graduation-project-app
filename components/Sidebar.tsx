@@ -109,24 +109,6 @@ export default function CustomDrawerContent(props: any) {
           }}
         />
 
-        <List.Item
-          title="수강 신청"
-          titleStyle={styles.menuItemTitle}
-          style={styles.menuItem}
-          left={() => <List.Icon color={iconColor} icon="book-open-variant" />}
-          right={() => <List.Icon color={theme.neutral.gray400} icon="open-in-new" />}
-          onPress={() => handleExternalLink('https://sugang.hknu.ac.kr/login')}
-        />
-
-        <List.Item
-          title="도서관"
-          titleStyle={styles.menuItemTitle}
-          style={styles.menuItem}
-          left={() => <List.Icon color={iconColor} icon="library" />}
-          right={() => <List.Icon color={theme.neutral.gray400} icon="open-in-new" />}
-          onPress={() => handleExternalLink('https://lib.hknu.ac.kr/')}
-        />
-
         <List.Accordion
           title="학식 메뉴"
           // 💡 다른 항목과 폰트 스타일을 일치시켜 수직 정렬을 맞춥니다.
@@ -175,6 +157,24 @@ export default function CustomDrawerContent(props: any) {
           style={styles.menuItem}
           left={() => <List.Icon color={iconColor} icon="laptop" />}
           onPress={() => handleExternalLink('https://cyber.hknu.ac.kr/ilos/main/main_form.acl')}
+        />
+
+        <List.Item
+          title="수강 신청"
+          titleStyle={styles.menuItemTitle}
+          style={styles.menuItem}
+          left={() => <List.Icon color={iconColor} icon="book-open-variant" />}
+          right={() => <List.Icon color={theme.neutral.gray400} icon="open-in-new" />}
+          onPress={() => handleExternalLink('https://sugang.hknu.ac.kr/login')}
+        />
+
+        <List.Item
+          title="도서관"
+          titleStyle={styles.menuItemTitle}
+          style={styles.menuItem}
+          left={() => <List.Icon color={iconColor} icon="library" />}
+          right={() => <List.Icon color={theme.neutral.gray400} icon="open-in-new" />}
+          onPress={() => handleExternalLink('https://lib.hknu.ac.kr/')}
         />
       </List.Section>
     </DrawerContentScrollView>
