@@ -5,8 +5,8 @@ import { Alert, Linking, StyleSheet, View, useColorScheme } from 'react-native';
 import { Avatar, Divider, List, Text } from 'react-native-paper';
 
 import { Spacing } from '@/constants/Spacing';
-import { useAppTheme } from '@/hooks/use-theme-color';
 import { useTextStyles } from '@/hooks/use-font-size';
+import { useAppTheme } from '@/hooks/use-theme-color';
 
 export default function CustomDrawerContent(props: any) {
   const theme = useAppTheme();

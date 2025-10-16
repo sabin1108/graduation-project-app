@@ -9,7 +9,7 @@ import Slider from '@react-native-community/slider';
 import { useAppTheme } from '@/hooks/use-theme-color';
 import { Spacing } from '@/constants/Spacing';
 import { TextStyles } from '@/constants/Typography';
-import { loadMessages, saveFontSize, loadFontSize, FontSize } from '@/lib/storage';
+import { loadMessages, saveFontSize, loadFontSize, FontSize, clearMessages } from '@/lib/storage';
 
 export default function SettingsScreen() {
   const theme = useAppTheme();
@@ -49,6 +49,32 @@ ${msg.content}`
       console.error('Error exporting chat:', error);
       Alert.alert('오류', '채팅 내역을 내보내는 중 오류가 발생했습니다.');
     }
+  };
+
+  const handleClearHistory = () => {
+    Alert.alert(
+      '채팅 내역 삭제',
+      '정말로 모든 대화 내용을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.',
+      [
+        {
+          text: '취소',
+          style: 'cancel',
+        },
+        {
+          text: '삭제',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              await clearMessages();
+              Alert.alert('완료', '채팅 내역이 모두 삭제되었습니다.');
+            } catch (error) {
+              console.error('Error clearing chat history:', error);
+              Alert.alert('오류', '채팅 내역을 삭제하는 중 오류가 발생했습니다.');
+            }
+          },
+        },
+      ]
+    );
   };
 
   const handleFontSizeChange = async (value: number) => {
@@ -105,6 +131,16 @@ ${msg.content}`
         </Card.Content>
         <Card.Actions>
           <Button onPress={handleExport}>내보내기</Button>
+        </Card.Actions>
+      </Card>
+
+      <Card style={[styles.card, dynamicStyles.card]}>
+        <Card.Content>
+          <Title>채팅 내역 삭제</Title>
+          <Paragraph>모든 대화 내용을 영구적으로 삭제합니다.</Paragraph>
+        </Card.Content>
+        <Card.Actions>
+          <Button onPress={handleClearHistory} color={theme.error}>삭제하기</Button>
         </Card.Actions>
       </Card>
 

@@ -8,14 +8,7 @@ import Markdown from 'react-native-markdown-display';
 import { Spacing } from '@/constants/Spacing';
 import { useTextStyles } from '@/hooks/use-font-size';
 import { useAppTheme } from '@/hooks/use-theme-color';
-
-// Define the Message interface locally for this component
-interface Message {
-  id: string;
-  role: 'user' | 'assistant';
-  content: string;
-  timestamp: Date;
-}
+import { Message } from '@/types/chat';
 
 interface MessageBubbleProps {
   message: Message;

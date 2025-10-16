@@ -4,6 +4,7 @@ import { View, FlatList, KeyboardAvoidingView, Platform, StyleSheet, ActivityInd
 import uuid from 'react-native-uuid';
 import * as Speech from 'expo-speech';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useIsFocused } from '@react-navigation/native';
 
 import MessageBubble from '@/components/MessageBubble';
 import ChatInput from '@/components/ChatInput'; // Import the new ChatInput component
@@ -12,44 +13,41 @@ import { useAppTheme } from '@/hooks/use-theme-color';
 import { Spacing } from '@/constants/Spacing';
 import { TextStyles } from '@/constants/Typography';
 import { saveMessages, loadMessages } from '@/lib/storage';
-
-interface Message {
-  id: string;
-  role: 'user' | 'assistant';
-  content: string;
-  timestamp: Date;
-}
+import { Message } from '@/types/chat';
 
 export default function ChatScreen() {
   const theme = useAppTheme();
   const params = useLocalSearchParams();
   const router = useRouter();
+  const isFocused = useIsFocused();
 
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [userId] = useState(uuid.v4() as string);
   const flatListRef = useRef<FlatList>(null);
 
-  // Load messages from storage on mount
+  // Load messages from storage when the screen is focused
   useEffect(() => {
     const load = async () => {
-      const loadedMessages = await loadMessages();
-      if (loadedMessages.length > 0) {
-        setMessages(loadedMessages);
-      } else {
-        // If no messages are loaded, set the initial welcome message
-        setMessages([
-          {
-            id: uuid.v4() as string,
-            role: 'assistant',
-            content: '안녕하세요! 한경국립대학교 AI 챗봇입니다. 무엇을 도와드릴까요?',
-            timestamp: new Date(),
-          },
-        ]);
+      if (isFocused) {
+        const loadedMessages = await loadMessages();
+        if (loadedMessages.length > 0) {
+          setMessages(loadedMessages);
+        } else {
+          // If no messages are loaded, set the initial welcome message
+          setMessages([
+            {
+              id: uuid.v4() as string,
+              role: 'assistant',
+              content: '안녕하세요! 한경국립대학교 AI 챗봇입니다. 무엇을 도와드릴까요?',
+              timestamp: new Date(),
+            },
+          ]);
+        }
       }
     };
     load();
-  }, []);
+  }, [isFocused]);
 
   // Save messages to storage whenever they change
   useEffect(() => {

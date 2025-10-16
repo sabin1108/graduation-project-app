@@ -1,12 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-// Re-defining the Message interface here for type safety
-interface Message {
-  id: string;
-  role: 'user' | 'assistant';
-  content: string;
-  timestamp: Date;
-}
+import { Message } from '@/types/chat';
 
 const MESSAGES_STORAGE_KEY = 'chatMessages';
 
@@ -50,6 +43,14 @@ export const loadMessages = async (): Promise<Message[]> => {
   } catch (error) {
     console.error('Error loading messages from AsyncStorage:', error);
     return []; // Return empty array on other errors
+  }
+};
+
+export const clearMessages = async () => {
+  try {
+    await AsyncStorage.removeItem(MESSAGES_STORAGE_KEY);
+  } catch (error) {
+    console.error('Error clearing messages from AsyncStorage:', error);
   }
 };
 
