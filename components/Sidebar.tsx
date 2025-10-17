@@ -1,4 +1,4 @@
-import { DrawerContentScrollView } from '@react-navigation/drawer';
+import { DrawerContentScrollView, useDrawerStatus } from '@react-navigation/drawer';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { Alert, Linking, StyleSheet, View, useColorScheme } from 'react-native';
@@ -13,6 +13,8 @@ export default function CustomDrawerContent(props: any) {
   const router = useRouter();
   const TextStyles = useTextStyles();
   const colorScheme = useColorScheme();
+  const drawerStatus = useDrawerStatus();
+  const isDrawerOpen = drawerStatus === 'open';
 
   const isDarkMode = true;
 
@@ -95,7 +97,9 @@ export default function CustomDrawerContent(props: any) {
           style={styles.menuItem}
           left={() => <List.Icon color={iconColor} icon="calendar" />}
           onPress={() => {
-            props.navigation.navigate('modal');
+            if (isDrawerOpen) {
+              props.navigation.navigate('modal');
+            }
           }}
         />
 
@@ -105,7 +109,9 @@ export default function CustomDrawerContent(props: any) {
           style={styles.menuItem}
           left={() => <List.Icon color={iconColor} icon="cog" />}
           onPress={() => {
-            props.navigation.navigate('settings');
+            if (isDrawerOpen) {
+              props.navigation.navigate('settings');
+            }
           }}
         />
 
@@ -121,19 +127,31 @@ export default function CustomDrawerContent(props: any) {
             title="학생식당"
             style={{ backgroundColor: 'transparent' }}
             titleStyle={{ color: isDarkMode ? theme.neutral.gray100 : theme.neutral.gray800 }}
-            onPress={() => handleQuickReply('오늘 학생식당 메뉴 알려줘')}
+            onPress={() => {
+              if (isDrawerOpen) {
+                handleQuickReply('오늘 학생식당 메뉴 알려줘');
+              }
+            }}
           />
           <List.Item
             title="기숙사식당"
             style={{ backgroundColor: 'transparent' }}
             titleStyle={{ color: isDarkMode ? theme.neutral.gray100 : theme.neutral.gray800 }}
-            onPress={() => handleQuickReply('오늘 기숙사식당 메뉴 알려줘')}
+            onPress={() => {
+              if (isDrawerOpen) {
+                handleQuickReply('오늘 기숙사식당 메뉴 알려줘');
+              }
+            }}
           />
           <List.Item
             title="교직원식당"
             style={{ backgroundColor: 'transparent' }}
             titleStyle={{ color: isDarkMode ? theme.neutral.gray100 : theme.neutral.gray800 }}
-            onPress={() => handleQuickReply('오늘 교직원식당 메뉴 알려줘')}
+            onPress={() => {
+              if (isDrawerOpen) {
+                handleQuickReply('오늘 교직원식당 메뉴 알려줘');
+              }
+            }}
           />
         </List.Accordion>
       </List.Section>
@@ -148,7 +166,11 @@ export default function CustomDrawerContent(props: any) {
           titleStyle={styles.menuItemTitle}
           style={styles.menuItem}
           left={() => <List.Icon color={iconColor} icon="web" />}
-          onPress={() => handleExternalLink('https://www.hknu.ac.kr/')}
+          onPress={() => {
+            if (isDrawerOpen) {
+              handleExternalLink('https://www.hknu.ac.kr/');
+            }
+          }}
         />
 
         <List.Item
@@ -156,7 +178,11 @@ export default function CustomDrawerContent(props: any) {
           titleStyle={styles.menuItemTitle}
           style={styles.menuItem}
           left={() => <List.Icon color={iconColor} icon="laptop" />}
-          onPress={() => handleExternalLink('https://cyber.hknu.ac.kr/ilos/main/main_form.acl')}
+          onPress={() => {
+            if (isDrawerOpen) {
+              handleExternalLink('https://cyber.hknu.ac.kr/ilos/main/main_form.acl');
+            }
+          }}
         />
 
         <List.Item
@@ -165,7 +191,11 @@ export default function CustomDrawerContent(props: any) {
           style={styles.menuItem}
           left={() => <List.Icon color={iconColor} icon="book-open-variant" />}
           right={() => <List.Icon color={theme.neutral.gray400} icon="open-in-new" />}
-          onPress={() => handleExternalLink('https://sugang.hknu.ac.kr/login')}
+          onPress={() => {
+            if (isDrawerOpen) {
+              handleExternalLink('https://sugang.hknu.ac.kr/login');
+            }
+          }}
         />
 
         <List.Item
@@ -174,7 +204,11 @@ export default function CustomDrawerContent(props: any) {
           style={styles.menuItem}
           left={() => <List.Icon color={iconColor} icon="library" />}
           right={() => <List.Icon color={theme.neutral.gray400} icon="open-in-new" />}
-          onPress={() => handleExternalLink('https://lib.hknu.ac.kr/')}
+          onPress={() => {
+            if (isDrawerOpen) {
+              handleExternalLink('https://lib.hknu.ac.kr/');
+            }
+          }}
         />
       </List.Section>
     </DrawerContentScrollView>
