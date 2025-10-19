@@ -28,7 +28,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
 
   const processedMessageContent = isUser ? message.content : processContent(message.content);
 
-  // Custom renderer for links
+  // 링크를 위한 사용자 정의 렌더러
   const renderLink = (node: any, children: any, parent: any, _: any) => {
     const href = node.attributes.href;
 
@@ -51,7 +51,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
 
   const handleCopy = async () => {
     await Clipboard.setStringAsync(message.content);
-    // TODO: Add a toast notification here later
+    // TODO: 나중에 여기에 토스트 알림 추가
   };
 
   const bubbleStyle = isUser 
@@ -64,13 +64,13 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
   const align: 'right' | 'left' = isUser ? 'right' : 'left';
 
   const timestampStyle = [
-    TextStyles.tiny, // Using tiny for timestamp as per design guide's small text
+    TextStyles.tiny, // 디자인 가이드의 작은 텍스트에 따라 타임스탬프에 tiny 사용
     { color: theme.chat.timestamp, textAlign: align },
   ];
 
   const markdownStyle = {
     paragraph: {
-      ...TextStyles.body, // Using TextStyles.body for message text
+      ...TextStyles.body, // 메시지 텍스트에 TextStyles.body 사용
       ...userTextStyle,
       ...assistantTextStyle,
     },
@@ -117,7 +117,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginBottom: Spacing.sm, // Changed from Spacing.md to Spacing.sm (8)
+    marginBottom: Spacing.sm, // Spacing.md에서 Spacing.sm (8)으로 변경됨
     alignItems: 'flex-end',
   },
   userContainer: {
@@ -135,11 +135,12 @@ const styles = StyleSheet.create({
     marginHorizontal: Spacing.sm,
   },
   bubbleWrapper: {
-    maxWidth: '75%',
+    maxWidth: '95%',
+    flexShrink: 1,
   },
   bubble: {
     paddingVertical: 12,
-    paddingHorizontal: Spacing.md, // Spacing.md is 16
+    paddingHorizontal: Spacing.md, // Spacing.md = 16
     borderRadius: 20,
   },
   userBubble: {

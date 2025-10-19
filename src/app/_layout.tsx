@@ -11,7 +11,7 @@ import { PaperProvider, MD3LightTheme, MD3DarkTheme } from 'react-native-paper';
 import { Colors, DarkColors } from '@/constants/theme';
 import { FontSizeProvider } from '@/hooks/use-font-size';
 
-// Create a mapping from the custom theme to what react-navigation expects
+// 사용자 정의 테마를 react-navigation이 예상하는 형식으로 매핑합니다.
 const navTheme = {
   ...DefaultTheme,
   colors: {
@@ -38,7 +38,7 @@ const navDarkTheme = {
   },
 };
 
-// Create themes for react-native-paper
+// react-native-paper를 위한 테마를 생성합니다.
 const paperTheme = {
   ...MD3LightTheme,
   colors: {
@@ -68,7 +68,7 @@ export const unstable_settings = {
   anchor: '(tabs)',
 };
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
+// 에셋 로딩이 완료되기 전에 스플래시 화면이 자동으로 숨겨지는 것을 방지합니다.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -84,12 +84,12 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (fontsLoaded || fontError) {
-      // Hide the splash screen after fonts have loaded or an error occurred
+      // 폰트 로딩이 완료되거나 오류가 발생한 후 스플래시 화면을 숨깁니다.
       SplashScreen.hideAsync();
     }
   }, [fontsLoaded, fontError]);
 
-  // Prevent rendering until fonts are loaded
+  // 폰트가 로드될 때까지 렌더링을 방지합니다.
   if (!fontsLoaded && !fontError) {
     return null;
   }

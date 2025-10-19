@@ -16,7 +16,7 @@ export const loadMessages = async (): Promise<Message[]> => {
   try {
     const jsonValue = await AsyncStorage.getItem(MESSAGES_STORAGE_KEY);
     if (jsonValue === null) {
-      return []; // No messages stored yet
+      return []; // 저장된 메시지가 아직 없습니다.
     }
 
     let parsedMessages;
@@ -24,17 +24,17 @@ export const loadMessages = async (): Promise<Message[]> => {
       parsedMessages = JSON.parse(jsonValue);
     } catch (parseError) {
       console.error('Error parsing messages from AsyncStorage:', parseError);
-      // If parsing fails, it's safer to return an empty array than risk crashing
+      // 구문 분석에 실패하면 충돌 위험을 감수하는 것보다 빈 배열을 반환하는 것이 안전합니다.
       return [];
     }
 
-    // Ensure that the parsed data is an array before trying to map over it
+    // 구문 분석된 데이터가 배열인지 확인합니다.
     if (!Array.isArray(parsedMessages)) {
       console.error('Stored messages are not in the expected array format.');
       return [];
     }
 
-    // Convert timestamp strings back to Date objects
+    // 타임스탬프 문자열을 Date 객체로 다시 변환합니다.
     return parsedMessages.map((msg: any) => ({
       ...msg,
       timestamp: new Date(msg.timestamp),
@@ -42,7 +42,7 @@ export const loadMessages = async (): Promise<Message[]> => {
     
   } catch (error) {
     console.error('Error loading messages from AsyncStorage:', error);
-    return []; // Return empty array on other errors
+    return []; // 다른 오류 발생 시 빈 배열 반환
   }
 };
 
@@ -54,7 +54,7 @@ export const clearMessages = async () => {
   }
 };
 
-// --- Font Size Storage ---
+// --- 글꼴 크기 저장소 ---
 
 const FONT_SIZE_STORAGE_KEY = 'fontSize';
 
@@ -78,5 +78,5 @@ export const loadFontSize = async (): Promise<FontSize> => {
   } catch (error) {
     console.error('Error loading font size from AsyncStorage:', error);
   }
-  return 1; // Default font size
+  return 1; // 기본 글꼴 크기
 };

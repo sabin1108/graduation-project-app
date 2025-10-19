@@ -4,14 +4,14 @@ export const FontFamily = {
   // 한글: Pretendard (무료, Google Fonts)
   primary: 'Pretendard-Regular',
   primaryBold: 'Pretendard-Bold',
-  primaryMedium: 'Pretendard-Medium', // Assuming Pretendard-Medium exists
+  primaryMedium: 'Pretendard-Medium', // Pretendard-Medium이 있다고 가정
   
-  // 영문/숫자: Inter (무료, Google Fonts) - Keeping for now, but not in design guide
+  // 영문/숫자: Inter (무료, Google Fonts) - 현재 유지하지만 디자인 가이드에는 없음
   secondary: 'Inter-Regular',
   secondaryBold: 'Inter-Bold',
   secondaryMedium: 'Inter-Medium',
   
-  // 코드: Fira Code (무료, Google Fonts) - Keeping for now, but not in design guide
+  // 코드: Fira Code (무료, Google Fonts) - 현재 유지하지만 디자인 가이드에는 없음
   monospace: 'FiraCode-Regular',
 } as const;
 
@@ -31,7 +31,7 @@ export const createTextStyles = (size: number = 1) => {
   const scaledSize = (base: number) => Math.round(base * multiplier);
 
   return {
-    // Headings
+    // 제목
     h1: {
       fontFamily: FontFamily.primaryBold,
       fontSize: scaledSize(baseFontSizes.h1),
@@ -53,7 +53,7 @@ export const createTextStyles = (size: number = 1) => {
       color: Colors.neutral.gray900,
     },
     
-    // Body Text
+    // 본문 텍스트
     body: {
       fontFamily: FontFamily.primary,
       fontSize: scaledSize(baseFontSizes.body),
@@ -69,7 +69,7 @@ export const createTextStyles = (size: number = 1) => {
       color: Colors.neutral.gray700,
     },
     
-    // Caption & Small Text
+    // 캡션 및 작은 텍스트
     tiny: {
       fontFamily: FontFamily.primary,
       fontSize: scaledSize(baseFontSizes.tiny),
@@ -86,7 +86,7 @@ export const createTextStyles = (size: number = 1) => {
       textTransform: 'uppercase',
     },
     
-    // Button Text
+    // 버튼 텍스트
     button: {
       fontFamily: FontFamily.primaryMedium,
       fontSize: scaledSize(baseFontSizes.button),
@@ -98,4 +98,4 @@ export const createTextStyles = (size: number = 1) => {
   } as const;
 };
 
-export const TextStyles = createTextStyles(); // Default export for existing components
+export const TextStyles = createTextStyles(); // 기존 컴포넌트를 위한 기본 내보내기

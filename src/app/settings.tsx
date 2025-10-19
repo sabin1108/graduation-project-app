@@ -82,7 +82,7 @@ ${msg.content}`
     await saveFontSize(value);
   };
 
-  // Dynamic styles that depend on the theme
+  // 테마에 따라 달라지는 동적 스타일
   const dynamicStyles = {
     container: {
       backgroundColor: theme.neutral.gray50,
@@ -162,7 +162,7 @@ ${msg.content}`
   );
 }
 
-// Static styles that do not depend on the theme
+// 테마에 의존하지 않는 정적 스타일
 const styles = StyleSheet.create({
   container: {
     flex: 1,

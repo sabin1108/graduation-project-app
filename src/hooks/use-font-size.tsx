@@ -4,20 +4,20 @@ import { AppState } from 'react-native';
 import { loadFontSize, FontSize } from '@/lib/storage';
 import { createTextStyles } from '@/constants/Typography';
 
-// Create a default style object
+// 기본 스타일 객체 생성
 const defaultTextStyles = createTextStyles();
 
-// The context will hold a value of the same type as the default object
+// 컨텍스트는 기본 객체와 동일한 유형의 값을 보유합니다.
 const FontSizeContext = createContext(defaultTextStyles);
 
-// Custom hook to use the text styles
+// 텍스트 스타일을 사용하기 위한 사용자 정의 훅
 export const useTextStyles = () => useContext(FontSizeContext);
 
 interface FontSizeProviderProps {
   children: ReactNode;
 }
 
-// Provider component
+// Provider 컴포넌트
 export const FontSizeProvider = ({ children }: FontSizeProviderProps) => {
   const [textStyles, setTextStyles] = useState(defaultTextStyles);
 
@@ -29,7 +29,7 @@ export const FontSizeProvider = ({ children }: FontSizeProviderProps) => {
 
     loadAndSet();
 
-    // Listen for app state changes to reload font size when app becomes active
+    // 앱이 활성화될 때 글꼴 크기를 다시 로드하기 위해 앱 상태 변경을 수신합니다.
     const subscription = AppState.addEventListener('change', (nextAppState) => {
       if (nextAppState === 'active') {
         loadAndSet();

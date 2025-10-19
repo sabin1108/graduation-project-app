@@ -1,4 +1,4 @@
-// Fallback for using MaterialIcons on Android and web.
+// Android 및 웹에서 MaterialIcons를 사용하기 위한 대체 수단입니다.
 
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { SymbolWeight, SymbolViewProps } from 'expo-symbols';
@@ -9,9 +9,9 @@ type IconMapping = Record<SymbolViewProps['name'], ComponentProps<typeof Materia
 type IconSymbolName = keyof typeof MAPPING;
 
 /**
- * Add your SF Symbols to Material Icons mappings here.
- * - see Material Icons in the [Icons Directory](https://icons.expo.fyi).
- * - see SF Symbols in the [SF Symbols](https://developer.apple.com/sf-symbols/) app.
+ * 여기에 SF Symbols를 Material Icons 매핑에 추가하세요.
+ * - [아이콘 디렉토리](https://icons.expo.fyi)에서 Material Icons를 참조하세요.
+ * - [SF Symbols](https://developer.apple.com/sf-symbols/) 앱에서 SF Symbols를 참조하세요.
  */
 const MAPPING = {
   'house.fill': 'home',
@@ -21,9 +21,9 @@ const MAPPING = {
 } as IconMapping;
 
 /**
- * An icon component that uses native SF Symbols on iOS, and Material Icons on Android and web.
- * This ensures a consistent look across platforms, and optimal resource usage.
- * Icon `name`s are based on SF Symbols and require manual mapping to Material Icons.
+ * iOS에서는 네이티브 SF Symbols를 사용하고, Android 및 웹에서는 Material Icons를 사용하는 아이콘 컴포넌트입니다.
+ * 이를 통해 플랫폼 전반에 걸쳐 일관된 모양과 최적의 리소스 사용을 보장합니다.
+ * 아이콘 `name`은 SF Symbols를 기반으로 하며 Material Icons에 수동 매핑이 필요합니다.
  */
 export function IconSymbol({
   name,

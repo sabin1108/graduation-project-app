@@ -57,7 +57,7 @@ export default function ChatScreen() {
 
 2. 식단 정보 (날짜 입력 필수)
 - 📌 교직원 식당 식단
-  예시: 11월 5일 교직원식당
+  예시: 11월 05일 교직원식당
 
 - 📌 기숙사 식당 식단
   예시: 11월 05일 기숙사식당
@@ -82,7 +82,7 @@ export default function ChatScreen() {
     }
   }, [messages]);
 
-  const handleSend = useCallback(async (messageContent: string) => { // messageContent is now required
+  const handleSend = useCallback(async (messageContent: string) => { // messageContent는 이제 필수입니다.
     const content = messageContent.trim();
     if (!content) return;
 
@@ -125,12 +125,12 @@ export default function ChatScreen() {
     }
   }, [userId]);
 
-  // Handle quick replies from sidebar
+  // 사이드바에서 빠른 답장 처리
   useEffect(() => {
     const quickReply = params.quickReply;
     if (quickReply && typeof quickReply === 'string') {
       handleSend(quickReply);
-      // Clear the param after sending to prevent re-sending on re-renders
+      // 전송 후 파라미터를 지워 리렌더링 시 재전송을 방지합니다.
       router.setParams({ quickReply: '' });
     }
   }, [params.quickReply, handleSend, router]);
@@ -139,7 +139,7 @@ export default function ChatScreen() {
     flatListRef.current?.scrollToEnd({ animated: true });
   }, [messages]);
 
-  // Dynamic styles from the design guide
+  // 디자인 가이드의 동적 스타일
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -150,7 +150,7 @@ export default function ChatScreen() {
       paddingTop: Spacing.md,
       paddingBottom: Spacing.xl,
     },
-    // Loading Indicator Styles
+    // 로딩 표시기 스타일
     loadingContainer: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -177,8 +177,8 @@ export default function ChatScreen() {
         renderItem={({ item }) => <MessageBubble message={item} />}
         contentContainerStyle={styles.messageList}
         onContentSizeChange={() => flatListRef.current?.scrollToEnd()}
-        showsVerticalScrollIndicator={false} // Added from design guide
-        keyboardShouldPersistTaps="handled" // Added from design guide
+        showsVerticalScrollIndicator={false} // 디자인 가이드에서 추가됨
+        keyboardShouldPersistTaps="handled" // 디자인 가이드에서 추가됨
       />
 
       {isLoading && (

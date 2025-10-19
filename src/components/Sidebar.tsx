@@ -25,10 +25,10 @@ export default function CustomDrawerContent(props: any) {
       backgroundColor: isDarkMode ? theme.neutral.gray800 : theme.neutral.white,
     },
     header: {
-      paddingVertical: Spacing.xl, // Adjusted from 2xl to xl
+      paddingVertical: Spacing.xl, // 2xl에서 xl로 조정됨
       flexDirection: 'row',
       alignItems: 'center',
-      marginBottom: Spacing.md, // Added margin bottom for spacing
+      marginBottom: Spacing.md, // 간격을 위한 하단 여백 추가
     },
     headerTitle: {
       ...TextStyles.h3,
@@ -36,7 +36,7 @@ export default function CustomDrawerContent(props: any) {
       color: isDarkMode ? theme.neutral.white : theme.neutral.gray800,
     },
     headerDescription: {
-      ...TextStyles.small, // Using small for description
+      ...TextStyles.small, // 설명을 위해 small 사용
       marginLeft: Spacing.md,
       color: isDarkMode ? theme.neutral.gray400 : theme.neutral.gray500,
     },
@@ -49,8 +49,8 @@ export default function CustomDrawerContent(props: any) {
       backgroundColor: 'transparent',
     },
     menuItemTitle: {
-      ...TextStyles.body, // Using body for menu item title
-      color: isDarkMode ? '#E2E8F0' : theme.neutral.gray800, // Specific color from design guide
+      ...TextStyles.body, // 메뉴 항목 제목에 body 사용
+      color: isDarkMode ? '#E2E8F0' : theme.neutral.gray800, // 디자인 가이드의 특정 색상
     },
     listSubheader: {
       ...TextStyles.overline,

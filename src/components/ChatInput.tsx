@@ -29,7 +29,7 @@ export default function ChatInput({ onSendMessage }: ChatInputProps) {
     }]}>
       <TextInput
         style={[styles.textInput, { 
-          ...TextStyles.body, // Apply body text style
+          ...TextStyles.body, // 본문 텍스트 스타일 적용
           backgroundColor: theme.neutral.gray100, 
           color: theme.neutral.gray900,
         }]}
@@ -43,7 +43,7 @@ export default function ChatInput({ onSendMessage }: ChatInputProps) {
         style={({ pressed }) => [
           styles.sendButton, 
           { 
-            backgroundColor: theme.primary.light, // Using primary.light for send button
+            backgroundColor: theme.primary.light, // 전송 버튼에 primary.light 사용
             opacity: pressed ? 0.7 : 1 
           }
         ]}

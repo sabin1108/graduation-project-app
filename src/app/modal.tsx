@@ -18,7 +18,7 @@ import { Colors } from '@/constants/theme';
 import { TextStyles } from '@/constants/Typography';
 import { useAppTheme } from '@/hooks/use-theme-color';
 
-// Setup for react-native-calendars
+// react-native-calendars 설정
 LocaleConfig.locales['ko'] = {
   monthNames: [
     '1월',
@@ -62,11 +62,11 @@ LocaleConfig.locales['ko'] = {
 };
 LocaleConfig.defaultLocale = 'ko';
 
-// Data from guide
+// 가이드의 데이터
 interface AcademicEvent {
   id: number;
-  startDate: string; // Use ISO string for consistency
-  endDate: string;   // Use ISO string for consistency
+  startDate: string; // 일관성을 위해 ISO 문자열 사용
+  endDate: string;   // 일관성을 위해 ISO 문자열 사용
   title: string;
   description: string;
   type: string;
@@ -258,7 +258,7 @@ export default function CalendarModalScreen() {
         endingDay?: boolean;
       } = {
         color: periodColor,
-        textColor: theme.neutral.white, // Keep text white for contrast
+        textColor: theme.neutral.white, // 대비를 위해 텍스트를 흰색으로 유지
       };
 
       if (isStart) {
@@ -300,7 +300,7 @@ export default function CalendarModalScreen() {
       ...TextStyles.h2,
       color: theme.neutral.gray900,
       marginBottom: Spacing.lg,
-      paddingTop: Spacing.xl, // Added padding for status bar
+      paddingTop: Spacing.xl, // 상태 표시줄을 위한 패딩 추가
     },
     eventList: {
       marginTop: Spacing.lg,

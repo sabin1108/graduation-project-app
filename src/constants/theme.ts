@@ -3,37 +3,37 @@ export const Colors = {
   primary: {
     main: '#1E3A8A',      // 메인 브랜드 컬러
     light: '#3B82F6',     // 액센트, 버튼
-    dark: '#1E3A8A',      // Darker Navy (using main for now)
+    dark: '#1E3A8A',      // 더 어두운 네이비 (현재는 main 사용)
   },
   
-  // Secondary Colors (강조 컬러) - Using accent from design guide
+  // 보조 색상 (강조 컬러) - 디자인 가이드의 액센트 사용
   secondary: {
     main: '#06B6D4',      // Cyan (시안) - Accent
-    light: '#22D3EE',     // Light Cyan
-    dark: '#0891B2',      // Dark Cyan
+    light: '#22D3EE',     // 밝은 시안
+    dark: '#0891B2',      // 어두운 시안
   },
   
   // Neutral Colors (배경 및 텍스트)
   neutral: {
     white: '#FFFFFF',
-    gray50: '#F8FAFC',    // App background
-    gray100: '#F1F5F9',   // AI message background
-    gray200: '#E2E8F0',   // Border color
+    gray50: '#F8FAFC',    // 앱 배경
+    gray100: '#F1F5F9',   // AI 메시지 배경
+    gray200: '#E2E8F0',   // 테두리 색상
     gray300: '#D1D5DB',
-    gray400: '#94A3B8',   // Inactive text
-    gray500: '#64748B',   // Secondary text
-    gray600: '#64748B',   // Secondary text
+    gray400: '#94A3B8',   // 비활성 텍스트
+    gray500: '#64748B',   // 보조 텍스트
+    gray600: '#64748B',   // 보조 텍스트
     gray700: '#374151',
     gray800: '#1F2937',
-    gray900: '#0F172A',   // Primary text
+    gray900: '#0F172A',   // 기본 텍스트
     black: '#000000',
   },
   
   // Semantic Colors (상태 표시)
-  success: '#10B981',     // Green
-  warning: '#F59E0B',     // Amber
-  error: '#EF4444',       // Red
-  info: '#3B82F6',        // Blue - using primaryLight
+  success: '#10B981',     // 녹색
+  warning: '#F59E0B',     // 황색
+  error: '#EF4444',       // 빨간색
+  info: '#3B82F6',        // 파란색 - primaryLight 사용
   
   // Chat-specific Colors
   chat: {

@@ -2,7 +2,7 @@ import { useColorScheme } from './use-color-scheme';
 import { Colors, DarkColors } from '@/constants/theme';
 
 /**
- * A hook that returns the appropriate color palette based on the current color scheme.
+ * 현재 색상 구성표에 따라 적절한 색상 팔레트를 반환하는 후크입니다.
  */
 export function useAppTheme() {
   const colorScheme = useColorScheme();
@@ -24,7 +24,7 @@ export function useThemeColor(
   if (colorFromProps) {
     return colorFromProps;
   } else {
-    // Fallback to the theme's color if not provided in props
+    // props에 제공되지 않은 경우 테마의 색상으로 대체합니다.
     const themeColors = colorScheme === 'dark' ? DarkColors : Colors;
     // @ts-ignore
     return themeColors.neutral[colorName];
