@@ -1,8 +1,16 @@
 import { useIsFocused } from '@react-navigation/native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import * as Speech from 'expo-speech';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, FlatList, KeyboardAvoidingView, Platform, StyleSheet, Text, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  ActivityIndicator,
+  FlatList,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import 'react-native-get-random-values';
 import uuid from 'react-native-uuid';
 
@@ -15,29 +23,9 @@ import { loadMessages, saveMessages } from '@/lib/storage';
 import { sendChatMessage } from '@/services/api';
 import { Message } from '@/types/chat';
 
-export default function ChatScreen() {
-  const theme = useAppTheme();
-  const params = useLocalSearchParams();
-  const router = useRouter();
-  const isFocused = useIsFocused();
-
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [userId] = useState(uuid.v4() as string);
-  const flatListRef = useRef<FlatList>(null);
-
-  useEffect(() => {
-    const load = async () => {
-      if (isFocused) {
-        const loadedMessages = await loadMessages();
-        if (loadedMessages.length > 0) {
-          setMessages(loadedMessages);
-        } else {
-          setMessages([
-              {
-                id: uuid.v4() as string,
-                role: 'assistant',
-                content: `[한경국립대학교 챗봇 사용 안내]
+const INITIAL_ASSISTANT_MESSAGE: Omit<Message, 'id' | 'timestamp'> = {
+  role: 'assistant',
+  content: `[한경국립대학교 챗봇 사용 안내]
 
 안녕하세요 한경국립대학교 챗봇입니다! 무엇을 도와드릴까요? 학사 일정, 학식 메뉴, 빠른 링크 등 다양한 정보를 얻을 수 있습니다. 궁금한 점이 있다면 언제든지 물어봐주세요!
 
@@ -67,9 +55,33 @@ export default function ChatScreen() {
 
 
 **사용 팁:** [월/날짜] + [원하는 정보] 형태로 입력하시면 됩니다.`,
-    timestamp: new Date(),
-        },
-        ]);
+};
+
+export default function ChatScreen() {
+  const theme = useAppTheme();
+  const params = useLocalSearchParams();
+  const router = useRouter();
+  const isFocused = useIsFocused();
+
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [userId] = useState(uuid.v4() as string);
+  const flatListRef = useRef<FlatList>(null);
+
+  useEffect(() => {
+    const load = async () => {
+      if (isFocused) {
+        const loadedMessages = await loadMessages();
+        if (loadedMessages.length > 0) {
+          setMessages(loadedMessages);
+        } else {
+          setMessages([
+            {
+              ...INITIAL_ASSISTANT_MESSAGE,
+              id: uuid.v4() as string,
+              timestamp: new Date(),
+            },
+          ]);
         }
       }
     };
@@ -82,48 +94,52 @@ export default function ChatScreen() {
     }
   }, [messages]);
 
-  const handleSend = useCallback(async (messageContent: string) => { // messageContent는 이제 필수입니다.
-    const content = messageContent.trim();
-    if (!content) return;
+  const handleSend = useCallback(
+    async (messageContent: string) => {
+      const content = messageContent.trim();
+      if (!content) return;
 
-    const userMessage: Message = {
-      id: uuid.v4() as string,
-      role: 'user',
-      content: content,
-      timestamp: new Date(),
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
-    setIsLoading(true);
-
-    try {
-      const response = await sendChatMessage(content, userId);
-      
-      const assistantMessage: Message = {
+      const userMessage: Message = {
         id: uuid.v4() as string,
-        role: 'assistant',
-        content: response.answer || '응답을 받지 못했습니다. 다시 시도해주세요.',
+        role: 'user',
+        content: content,
         timestamp: new Date(),
       };
 
-      setMessages((prev) => [...prev, assistantMessage]);
-      
-      Speech.speak(assistantMessage.content, { language: 'ko-KR' });
-    } catch (error) {
-      console.error('Error:', error);
-      setMessages((prev) => [
-        ...prev,
-        {
+      setMessages((prev) => [...prev, userMessage]);
+      setIsLoading(true);
+
+      try {
+        const response = await sendChatMessage(content, userId);
+
+        const assistantMessage: Message = {
           id: uuid.v4() as string,
           role: 'assistant',
-          content: '메시지 전송 중 오류가 발생했습니다. 네트워크 상태를 확인하고 다시 시도해주세요.',
+          content: response.answer || '응답을 받지 못했습니다. 다시 시도해주세요.',
           timestamp: new Date(),
-        },
-      ]);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [userId]);
+        };
+
+        setMessages((prev) => [...prev, assistantMessage]);
+
+        Speech.speak(assistantMessage.content, { language: 'ko-KR' });
+      } catch (error) {
+        console.error('Error:', error);
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: uuid.v4() as string,
+            role: 'assistant',
+            content:
+              '메시지 전송 중 오류가 발생했습니다. 네트워크 상태를 확인하고 다시 시도해주세요.',
+            timestamp: new Date(),
+          },
+        ]);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [userId]
+  );
 
   // 사이드바에서 빠른 답장 처리
   useEffect(() => {
@@ -139,30 +155,32 @@ export default function ChatScreen() {
     flatListRef.current?.scrollToEnd({ animated: true });
   }, [messages]);
 
-  // 디자인 가이드의 동적 스타일
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: theme.chat.background,
-    },
-    messageList: {
-      paddingHorizontal: Spacing.lg,
-      paddingTop: Spacing.md,
-      paddingBottom: Spacing.xl,
-    },
-    // 로딩 표시기 스타일
-    loadingContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: Spacing.md,
-    },
-    loadingText: {
-        ...TextStyles.tiny,
-        marginLeft: Spacing.sm,
-        color: theme.neutral.gray500,
-    },
-  });
+  const styles = useMemo(
+    () =>
+      StyleSheet.create({
+        container: {
+          flex: 1,
+          backgroundColor: theme.chat.background,
+        },
+        messageList: {
+          paddingHorizontal: Spacing.lg,
+          paddingTop: Spacing.md,
+          paddingBottom: Spacing.xl,
+        },
+        loadingContainer: {
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: Spacing.md,
+        },
+        loadingText: {
+          ...TextStyles.tiny,
+          marginLeft: Spacing.sm,
+          color: theme.neutral.gray500,
+        },
+      }),
+    [theme]
+  );
 
   return (
     <KeyboardAvoidingView
@@ -177,8 +195,8 @@ export default function ChatScreen() {
         renderItem={({ item }) => <MessageBubble message={item} />}
         contentContainerStyle={styles.messageList}
         onContentSizeChange={() => flatListRef.current?.scrollToEnd()}
-        showsVerticalScrollIndicator={false} // 디자인 가이드에서 추가됨
-        keyboardShouldPersistTaps="handled" // 디자인 가이드에서 추가됨
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
       />
 
       {isLoading && (
