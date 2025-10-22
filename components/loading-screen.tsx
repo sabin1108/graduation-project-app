@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { Bot, Sparkles } from "lucide-react"
 
 export default function LoadingScreen() {
   const [progress, setProgress] = useState(0)
@@ -20,24 +21,49 @@ export default function LoadingScreen() {
   }, [])
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-purple-400 to-teal-400">
-      <div className="w-24 h-24 mb-8 rounded-2xl overflow-hidden bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg">
-        <span className="text-3xl font-bold text-white">HK</span>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-primary/20 via-background to-secondary/20">
+      <div className="mb-8 flex justify-center">
+        <div className="relative">
+          {/* Outer glow layer */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-full blur-2xl scale-110"></div>
+
+          {/* Main badge container with 3D effect */}
+          <div className="relative w-32 h-32">
+            {/* Shadow layers for depth */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-full translate-y-2 opacity-40 blur-sm"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-full translate-y-1 opacity-60"></div>
+
+            {/* Main badge */}
+            <div className="relative w-full h-full bg-gradient-to-br from-primary via-primary to-secondary rounded-full flex items-center justify-center border-4 border-background shadow-2xl">
+              {/* Inner circle for depth */}
+              <div className="absolute inset-3 bg-gradient-to-br from-primary-foreground/10 to-transparent rounded-full"></div>
+
+              {/* Bot Icon */}
+              <Bot className="relative w-16 h-16 text-primary-foreground drop-shadow-lg" strokeWidth={1.5} />
+
+              {/* Shine effect */}
+              <div className="absolute top-4 left-4 w-12 h-12 bg-white/20 rounded-full blur-xl"></div>
+            </div>
+
+            
+          </div>
+        </div>
       </div>
-      <h1 className="text-2xl font-bold text-white mb-2">한경대학교</h1>
-      <p className="text-white/90 mb-8 text-center">
+
+      <h1 className="text-2xl font-bold text-foreground mb-2">한경국립대학교</h1>
+      <p className="text-muted-foreground mb-8 text-center">
         학생 도우미 챗봇
         <br />
         <span className="text-sm">언제 어디서나 필요한 정보를 제공합니다</span>
       </p>
 
-      <div className="w-64 h-2 bg-white/30 rounded-full mb-4 overflow-hidden">
+      <div className="w-64 h-2 bg-muted rounded-full mb-4 overflow-hidden">
         <div
-          className="h-full bg-white rounded-full transition-all duration-300"
+          className="h-full bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-300"
           style={{ width: `${progress}%` }}
         ></div>
       </div>
-      <p className="text-sm text-white/80">로딩 중... {progress}%</p>
+      <p className="text-sm text-muted-foreground">로딩 중... {progress}%</p>
     </div>
   )
 }

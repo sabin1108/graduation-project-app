@@ -1,11 +1,9 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import {
   Calendar,
-  Coffee,
   BookText,
   Library,
   Phone,
@@ -15,18 +13,29 @@ import {
   ChevronUp,
   ChevronDown,
   ChevronRight,
+  Bot,
+  Sparkles,
+  UtensilsCrossed,
+  Utensils,
+  ChefHat,
+  Apple,
+  Link,
 } from "lucide-react"
 import ImageCarousel from "./image-carousel"
+import ImageModal from "./image-modal"
 
 type SidebarProps = {
   isMobileMenuOpen: boolean
   setIsMobileMenuOpen: (isOpen: boolean) => void
+  onCalendarClick: () => void
+  onMenuClick: (menu: string) => void
 }
 
 type MenuItem = {
   name: string
   icon: React.ReactNode
   url?: string
+  onClick?: () => void
 }
 
 type QuickLinkItem = {
@@ -47,13 +56,13 @@ const CollapsibleSection = ({ title, icon, children, defaultExpanded = false }: 
   const [isExpanded, setIsExpanded] = useState(defaultExpanded)
 
   return (
-    <div className="mb-2 border rounded-lg overflow-hidden">
+    <div className="mb-4 border rounded-lg overflow-hidden">
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full flex items-center justify-between p-3 bg-gray-50 hover:bg-gray-100 transition-colors"
+        className="w-full flex items-center justify-between p-3 bg-primary/5 hover:bg-primary/10 transition-colors"
       >
         <div className="flex items-center">
-          <span className="mr-2 text-purple-500">{icon}</span>
+          <span className="mr-2 text-primary">{icon}</span>
           <span className="text-sm font-medium">{title}</span>
         </div>
         <ChevronDown
@@ -71,41 +80,54 @@ const CollapsibleSection = ({ title, icon, children, defaultExpanded = false }: 
   )
 }
 
-export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: SidebarProps) {
+export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, onCalendarClick, onMenuClick }: SidebarProps) {
   const [activeItem, setActiveItem] = useState("학사 일정")
   const [showScrollTop, setShowScrollTop] = useState(false)
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false)
+  const [selectedImageUrl, setSelectedImageUrl] = useState("")
+  const [selectedImageLink, setSelectedImageLink] = useState("")
 
-  // Sample carousel images
   const carouselImages = [
     {
-      src: "/placeholder.svg?height=320&width=400",
-      alt: "한경대학교 캠퍼스",
-      title: "아름다운 한경대학교 캠퍼스",
+      src: "/poster3.png",
+      alt: "공모전",
+      title: "제6회 국립대학육성사업 영상 콘텐츠 공모전",
+      link: "https://www.hknu.ac.kr/kor/561/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGa29yJTJGNjklMkY4OTYxMyUyRmFydGNsVmlldy5kbyUzRg%3D%3D",
     },
     {
-      src: "/placeholder.svg?height=320&width=400",
-      alt: "학생 활동",
-      title: "다양한 학생 활동",
+      src: "/poster2.jpg",
+      alt: "홍보",
+      title: "학과(전공) 홍보 영상 공모전 개최",
+      link: "https://www.hknu.ac.kr/kor/561/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGa29yJTJGNjklMkY4OTU2NyUyRmFydGNsVmlldy5kbyUzRg%3D%3D",
     },
     {
-      src: "/placeholder.svg?height=320&width=400",
+      src: "/poster.jpg",
       alt: "학술 행사",
       title: "2025 학술제 안내",
     },
   ]
 
   const menuItems: MenuItem[] = [
-    { name: "학사 일정", icon: <Calendar className="w-5 h-5" /> },
+    { name: "학사 일정", icon: <Calendar className="w-5 h-5" />, onClick: onCalendarClick },
     { name: "수강 신청", icon: <BookText className="w-5 h-5" />, url: "https://sugang.hknu.ac.kr/login" },
     { name: "도서관", icon: <Library className="w-5 h-5" />, url: "https://lib.hknu.ac.kr/" },
-    { name: "학식 메뉴", icon: <Coffee className="w-5 h-5" /> },
+  ]
+
+  const mealMenuItems = [
+    { name: "학생식당", icon: <UtensilsCrossed className="w-4 h-4 mr-2" /> },
+    { name: "기숙사식당", icon: <Utensils className="w-4 h-4 mr-2" /> },
+    { name: "교직원식당", icon: <ChefHat className="w-4 h-4 mr-2" /> },
   ]
 
   // 빠른 링크 항목
   const quickLinks: QuickLinkItem[] = [
     { name: "학교 홈페이지", icon: <Globe className="w-4 h-4" />, url: "https://www.hknu.ac.kr/" },
-    { name: "이캠퍼스", icon: <BookText className="w-4 h-4" />, url: "https://cyber.hknu.ac.kr/ilos/main/main_form.acl" },
-    { name: "학사공지", icon: <Info className="w-4 h-4" />, url: "https://info.hknu.ac.kr/intro/index.html#/login" },
+    {
+      name: "사이버캠퍼스",
+      icon: <BookText className="w-4 h-4" />,
+      url: "https://cyber.hknu.ac.kr/ilos/main/main_form.acl",
+    },
+    { name: "학사시스템", icon: <Info className="w-4 h-4" />, url: "https://info.hknu.ac.kr/intro/index.html#/login" },
   ]
 
   // 연락처 정보
@@ -122,11 +144,30 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: Sideb
     { label: "팩스", value: "031-670-5009" },
   ]
 
+  const openImageModal = (src: string, link?: string) => {
+    setSelectedImageUrl(src)
+    setSelectedImageLink(link || "")
+    setIsImageModalOpen(true)
+  }
+
+  const closeImageModal = () => {
+    setIsImageModalOpen(false)
+    setSelectedImageUrl("")
+    setSelectedImageLink("")
+  }
+
   const handleMenuClick = (item: MenuItem) => {
     setActiveItem(item.name)
 
+    if (item.name === "학식 메뉴") {
+      onMenuClick(item.name)
+    }
+    // onClick 함수가 있으면 실행 (캘린더 등)
+    else if (item.onClick) {
+      item.onClick()
+    }
     // URL이 있으면 해당 URL로 이동
-    if (item.url) {
+    else if (item.url) {
       window.open(item.url, "_blank")
     }
   }
@@ -157,18 +198,34 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: Sideb
 
       {/* 사이드바 */}
       <div
-        className={`fixed md:static inset-y-0 left-0 w-64 bg-white shadow-lg transform ${
+        className={`fixed md:static inset-y-0 left-0 w-80 bg-white shadow-lg transform ${
           isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 transition-transform duration-300 ease-in-out z-50 flex flex-col h-screen`}
       >
         {/* 사이드바 헤더 - 고정 */}
         <div className="p-4 border-b bg-white">
           <div className="flex items-center">
-            <div className="w-10 h-10 rounded-lg overflow-hidden bg-gradient-to-br from-purple-500 to-teal-400 flex items-center justify-center text-white font-bold shadow-md">
-              HK
+            <div className="relative w-10 h-10">
+              {/* Shadow layers for depth */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-full translate-y-1 opacity-40 blur-sm"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-full translate-y-0.5 opacity-60"></div>
+
+              {/* Main badge */}
+              <div className="relative w-full h-full bg-gradient-to-br from-primary via-primary to-secondary rounded-full flex items-center justify-center border-2 border-background shadow-lg">
+                {/* Inner circle for depth */}
+                <div className="absolute inset-1 bg-gradient-to-br from-primary-foreground/10 to-transparent rounded-full"></div>
+
+                {/* Bot Icon */}
+                <Bot className="relative w-5 h-5 text-primary-foreground drop-shadow-md" strokeWidth={1.5} />
+
+                {/* Shine effect */}
+                <div className="absolute top-1.5 left-1.5 w-4 h-4 bg-white/20 rounded-full blur-lg"></div>
+              </div>
+
+              
             </div>
             <div className="ml-3">
-              <h2 className="text-sm font-semibold">한경대학교</h2>
+              <h2 className="text-sm font-semibold">한경국립대학교</h2>
               <p className="text-xs text-gray-500">학생 도우미 챗봇</p>
             </div>
           </div>
@@ -180,22 +237,21 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: Sideb
           className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
           onScroll={handleScroll}
         >
-          {/* 캐러셀 섹션 - 더 크게 만들기 */}
+          {/* 캐러셀 섹션 */}
           <div className="p-4 pb-0">
-            <h3 className="text-sm font-medium text-gray-700 mb-2">캠퍼스 소식</h3>
-            <ImageCarousel images={carouselImages} height="h-80" />
-
-            {/* 캐러셀 아래 설명 텍스트 추가 */}
+            <h3 className="text-sm font-medium text-gray-700 mb-2">CAMPUS NEWS</h3>
+            <ImageCarousel
+              images={carouselImages}
+              height="h-80"
+              onImageClick={(src, link) => openImageModal(src, link)}
+            />
             <div className="mt-3 p-3 bg-gray-50 rounded-lg text-xs text-gray-600">
-              <p>한경대학교의 최신 소식과 이벤트를 확인하세요. 캠퍼스 내 다양한 활동과 학술 행사에 참여해보세요.</p>
+              <p>한경국립대학교의 최신 소식과 이벤트를 확인하세요. 캠퍼스 내 다양한 활동과 학술 행사에 참여해보세요.</p>
             </div>
           </div>
 
-          {/* 여백 추가 */}
-          <div className="h-8"></div>
-
           {/* 사이드바 메뉴 */}
-          <div className="px-4 mb-6">
+          <div className="px-4 mb-4 mt-8">
             <h3 className="text-sm font-medium text-gray-700 mb-3">메뉴</h3>
             <div className="space-y-2">
               {menuItems.map((item) => (
@@ -204,11 +260,11 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: Sideb
                   onClick={() => handleMenuClick(item)}
                   className={`w-full flex items-center px-4 py-3 text-sm rounded-lg transition-colors ${
                     activeItem === item.name
-                      ? "bg-gradient-to-r from-purple-100 to-teal-100 text-purple-600 font-medium shadow-sm"
+                      ? "bg-gradient-to-r from-primary/10 to-secondary/10 text-primary font-medium shadow-sm"
                       : "text-gray-700 hover:bg-gray-100"
-                  } ${item.url ? "cursor-pointer" : ""}`}
+                  } ${item.url || item.onClick ? "cursor-pointer" : ""}`}
                 >
-                  <span className={`mr-3 ${activeItem === item.name ? "text-purple-500" : ""}`}>{item.icon}</span>
+                  <span className={`mr-3 ${activeItem === item.name ? "text-primary" : ""}`}>{item.icon}</span>
                   {item.name}
                   {item.url && (
                     <svg
@@ -229,13 +285,24 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: Sideb
                 </button>
               ))}
             </div>
+            <CollapsibleSection title="학식 메뉴" icon={<Apple className="w-5 h-5" />}>
+              <div className="space-y-2">
+                {mealMenuItems.map((item) => (
+                  <button
+                    key={item.name}
+                    onClick={() => onMenuClick(item.name)}
+                    className="w-full flex items-center px-4 py-2 text-sm rounded-lg text-gray-700 hover:bg-gray-100"
+                  >
+                    <span className="text-primary">{item.icon}</span>
+                    {item.name}
+                  </button>
+                ))}
+              </div>
+            </CollapsibleSection>
           </div>
 
-          {/* 여백 추가 */}
-          <div className="h-4"></div>
-
           {/* 접을 수 있는 섹션들 */}
-          <div className="px-4 mb-6">
+          <div className="px-4 mb-4">
             <CollapsibleSection title="빠른 링크" icon={<Globe className="w-5 h-5" />} defaultExpanded={true}>
               <div className="space-y-2">
                 {quickLinks.map((link, index) => (
@@ -246,7 +313,7 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: Sideb
                     rel="noopener noreferrer"
                     className="flex items-center p-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                   >
-                    <span className="mr-2 text-purple-500">{link.icon}</span>
+                    <span className="mr-2 text-primary">{link.icon}</span>
                     {link.name}
                     <ChevronRight className="h-3 w-3 ml-auto text-gray-400" />
                   </a>
@@ -255,16 +322,12 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: Sideb
             </CollapsibleSection>
           </div>
 
-          {/* 여백 추가 */}
-          <div className="h-4"></div>
-
-          {/* 하단 정보 섹션들 */}
-          <div className="px-4 mb-8">
+          <div className="px-4 mb-4">
             <CollapsibleSection title="연락처" icon={<Phone className="w-5 h-5" />}>
               <div className="space-y-2">
                 {contactInfo.map((item, index) => (
                   <div key={index} className="flex items-center p-2 text-sm">
-                    <Phone className="w-4 h-4 text-purple-500 mr-2" />
+                    <Phone className="w-4 h-4 text-primary mr-2" />
                     <div>
                       <p className="text-xs text-gray-500">{item.label}</p>
                       <p className="font-medium">{item.value}</p>
@@ -273,20 +336,30 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: Sideb
                 ))}
               </div>
             </CollapsibleSection>
+          </div>
 
-            <div className="h-2"></div>
-
+          <div className="px-4 mb-8">
             <CollapsibleSection title="캠퍼스 정보" icon={<MapPin className="w-5 h-5" />}>
               <div className="space-y-2">
                 {campusInfo.map((item, index) => (
                   <div key={index} className="flex items-start p-2 text-sm">
-                    <MapPin className="w-4 h-4 text-purple-500 mr-2 mt-0.5" />
+                    <MapPin className="w-4 h-4 text-primary mr-2 mt-0.5" />
                     <div>
                       <p className="text-xs text-gray-500">{item.label}</p>
                       <p className="font-medium">{item.value}</p>
                     </div>
                   </div>
                 ))}
+                <a
+                  href="http://vr.hknu.ac.kr/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center p-2 text-sm text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                >
+                  <Link className="w-4 h-4 text-primary mr-2" />
+                  VR 캠퍼스 투어
+                  <ChevronRight className="h-3 w-3 ml-auto text-gray-400" />
+                </a>
               </div>
             </CollapsibleSection>
           </div>
@@ -299,13 +372,19 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }: Sideb
         {showScrollTop && (
           <button
             onClick={scrollToTop}
-            className="absolute bottom-4 right-4 bg-purple-500 text-white p-2 rounded-full shadow-md hover:bg-purple-600 transition-colors"
+            className="absolute bottom-4 right-4 bg-primary text-primary-foreground p-2 rounded-full shadow-md hover:bg-primary/90 transition-colors"
             aria-label="맨 위로 스크롤"
           >
             <ChevronUp className="w-4 h-4" />
           </button>
         )}
       </div>
+      <ImageModal
+        isOpen={isImageModalOpen}
+        onClose={closeImageModal}
+        imageUrl={selectedImageUrl}
+        link={selectedImageLink}
+      />
     </>
   )
 }
