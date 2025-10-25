@@ -11,6 +11,8 @@ export default function DrawerLayout() {
     <Drawer
       drawerContent={(props) => <CustomDrawerContent {...props} />}
       screenOptions={{
+        drawerType: 'front',
+        overlayColor: 'rgba(0,0,0,0.5)',
         headerShown: true,
         headerTitle: '한경국립대학교 AI 챗봇',
         headerStyle: {

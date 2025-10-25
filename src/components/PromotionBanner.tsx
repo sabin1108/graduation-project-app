@@ -176,11 +176,13 @@ const PromotionBanner = ({ size = 'large' }: PromotionBannerProps) => {
       >
         <TouchableWithoutFeedback onPress={handleCloseModal}>
           <View style={styles.modalContainer}>
-            <Image
-              source={selectedImage}
-              style={styles.modalImage}
-              resizeMode="contain"
-            />
+            {selectedImage && (
+              <Image
+                source={selectedImage}
+                style={styles.modalImage}
+                resizeMode="contain"
+              />
+            )}
           </View>
         </TouchableWithoutFeedback>
       </Modal>

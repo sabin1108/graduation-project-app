@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { View, StyleSheet, Share, Alert } from 'react-native';
 import { Button, Card, Title, Paragraph } from 'react-native-paper';
 import { useRouter } from 'expo-router';
@@ -7,6 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import Slider from '@react-native-community/slider';
 
 import { useAppTheme } from '@/hooks/use-theme-color';
+import { useFontSize } from '@/hooks/use-font-size';
 import { Spacing } from '@/constants/Spacing';
 import { TextStyles } from '@/constants/Typography';
 import { loadMessages, saveFontSize, loadFontSize, FontSize, clearMessages } from '@/lib/storage';
@@ -14,13 +15,13 @@ import { loadMessages, saveFontSize, loadFontSize, FontSize, clearMessages } fro
 export default function SettingsScreen() {
   const theme = useAppTheme();
   const router = useRouter();
-  const [fontSize, setFontSize] = useState<FontSize>(1);
-
+  const { updateFontSize } = useFontSize();
+  const [tempFontSize, setTempFontSize] = useState<FontSize>(1);
 
   useEffect(() => {
     const fetchSettings = async () => {
       const storedSize = await loadFontSize();
-      setFontSize(storedSize);
+      setTempFontSize(storedSize);
     };
     fetchSettings();
   }, []);
@@ -51,6 +52,16 @@ ${msg.content}`
     }
   };
 
+  const clearChatHistory = async () => {
+    try {
+      await clearMessages();
+      Alert.alert('완료', '채팅 내역이 모두 삭제되었습니다.');
+    } catch (error) {
+      console.error('Error clearing chat history:', error);
+      Alert.alert('오류', '채팅 내역을 삭제하는 중 오류가 발생했습니다.');
+    }
+  };
+
   const handleClearHistory = () => {
     Alert.alert(
       '채팅 내역 삭제',
@@ -63,27 +74,24 @@ ${msg.content}`
         {
           text: '삭제',
           style: 'destructive',
-          onPress: async () => {
-            try {
-              await clearMessages();
-              Alert.alert('완료', '채팅 내역이 모두 삭제되었습니다.');
-            } catch (error) {
-              console.error('Error clearing chat history:', error);
-              Alert.alert('오류', '채팅 내역을 삭제하는 중 오류가 발생했습니다.');
-            }
-          },
+          onPress: clearChatHistory,
         },
       ]
     );
   };
 
-  const handleFontSizeChange = async (value: number) => {
-    setFontSize(value);
+  const handleSliderChange = (value: number) => {
+    const newSize = value as FontSize;
+    setTempFontSize(newSize);
+    updateFontSize(newSize);
+  };
+
+  const handleSaveFontSize = async (value: number) => {
     await saveFontSize(value);
   };
 
   // 테마에 따라 달라지는 동적 스타일
-  const dynamicStyles = {
+  const dynamicStyles = useMemo(() => ({
     container: {
       backgroundColor: theme.neutral.gray50,
     },
@@ -96,17 +104,17 @@ ${msg.content}`
     closeButton: {
       backgroundColor: theme.primary.main,
     },
-  };
+  }), [theme]);
 
   return (
     <View style={[styles.container, dynamicStyles.container]}>
       <StatusBar style="dark" />
-      <Title style={[styles.title, dynamicStyles.title]}>설정</Title>
+      <Title style={[styles.title, { color: theme.neutral.gray900 }]}>설정</Title>
 
       <Card style={[styles.card, dynamicStyles.card]}>
         <Card.Content>
           <Title>폰트 크기</Title>
-          <Paragraph>앱의 전체 폰트 크기를 조절합니다. (앱 재시작 필요)</Paragraph>
+          <Paragraph>앱의 전체 폰트 크기를 조절합니다.</Paragraph>
         </Card.Content>
         <Card.Content>
           <Slider
@@ -114,13 +122,16 @@ ${msg.content}`
             minimumValue={0.8}
             maximumValue={1.2}
             step={0.1}
-            value={fontSize}
-            onValueChange={handleFontSizeChange}
+            value={tempFontSize}
+            onValueChange={handleSliderChange}
+            onSlidingComplete={handleSaveFontSize}
             minimumTrackTintColor={theme.primary.main}
             maximumTrackTintColor={theme.neutral.gray300}
             thumbTintColor={theme.primary.main}
           />
-          <Paragraph style={{ textAlign: 'center' }}>{fontSize.toFixed(1)}</Paragraph>
+          <Paragraph style={{ textAlign: 'center', fontSize: 16 * tempFontSize }}>
+            {tempFontSize.toFixed(1)}
+          </Paragraph>
         </Card.Content>
       </Card>
 
@@ -146,13 +157,7 @@ ${msg.content}`
 
       <Button
         mode="contained"
-        onPress={() => {
-          Alert.alert(
-            '알림',
-            '폰트 크기 변경사항을 적용하려면 앱을 다시 시작해야 합니다.',
-            [{ text: '확인', onPress: () => router.back() }]
-          );
-        }}
+        onPress={() => router.back()}
         style={[styles.closeButton, dynamicStyles.closeButton]}
         labelStyle={styles.closeButtonText}
       >

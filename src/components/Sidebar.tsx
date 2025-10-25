@@ -9,7 +9,7 @@ import { Avatar, Divider, List, Text } from 'react-native-paper';
 
 import PromotionBanner from '@/components/PromotionBanner';
 import { Spacing } from '@/constants/Spacing';
-import { useTextStyles } from '@/hooks/use-font-size';
+import { useFontSize } from '@/hooks/use-font-size';
 import { useAppTheme } from '@/hooks/use-theme-color';
 
 const CAFETERIA_LINKS = [
@@ -48,7 +48,7 @@ const QUICK_LINKS = [
 export default function CustomDrawerContent(props: DrawerContentComponentProps) {
   const theme = useAppTheme();
   const router = useRouter();
-  const TextStyles = useTextStyles();
+  const { textStyles: TextStyles } = useFontSize();
   const colorScheme = useColorScheme();
   const isDarkMode = colorScheme === 'dark';
 

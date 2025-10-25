@@ -6,7 +6,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Markdown from 'react-native-markdown-display';
 
 import { Spacing } from '@/constants/Spacing';
-import { useTextStyles } from '@/hooks/use-font-size';
+import { useFontSize } from '@/hooks/use-font-size';
 import { useAppTheme } from '@/hooks/use-theme-color';
 import { Message } from '@/types/chat';
 
@@ -16,7 +16,7 @@ interface MessageBubbleProps {
 
 export default function MessageBubble({ message }: MessageBubbleProps) {
   const theme = useAppTheme();
-  const TextStyles = useTextStyles();
+  const { textStyles: TextStyles } = useFontSize();
   const isUser = message.role === 'user';
 
   const processContent = (content: string) => {
