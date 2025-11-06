@@ -20,6 +20,7 @@ import {
   ChefHat,
   Apple,
   Link,
+
 } from "lucide-react"
 import ImageCarousel from "./image-carousel"
 import ImageModal from "./image-modal"
@@ -123,11 +124,13 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, onCalen
   const quickLinks: QuickLinkItem[] = [
     { name: "학교 홈페이지", icon: <Globe className="w-4 h-4" />, url: "https://www.hknu.ac.kr/" },
     {
+
       name: "사이버캠퍼스",
       icon: <BookText className="w-4 h-4" />,
       url: "https://cyber.hknu.ac.kr/ilos/main/main_form.acl",
     },
     { name: "학사시스템", icon: <Info className="w-4 h-4" />, url: "https://info.hknu.ac.kr/intro/index.html#/login" },
+
   ]
 
   // 연락처 정보
@@ -215,6 +218,7 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, onCalen
                 {/* Inner circle for depth */}
                 <div className="absolute inset-1 bg-gradient-to-br from-primary-foreground/10 to-transparent rounded-full"></div>
 
+
                 {/* Bot Icon */}
                 <Bot className="relative w-5 h-5 text-primary-foreground drop-shadow-md" strokeWidth={1.5} />
 
@@ -222,7 +226,6 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, onCalen
                 <div className="absolute top-1.5 left-1.5 w-4 h-4 bg-white/20 rounded-full blur-lg"></div>
               </div>
 
-              
             </div>
             <div className="ml-3">
               <h2 className="text-sm font-semibold">한경국립대학교</h2>
@@ -295,6 +298,7 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, onCalen
                   >
                     <span className="text-primary">{item.icon}</span>
                     {item.name}
+
                   </button>
                 ))}
               </div>
@@ -384,6 +388,7 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, onCalen
         onClose={closeImageModal}
         imageUrl={selectedImageUrl}
         link={selectedImageLink}
+        alt="학교 홍보 포스터 이미지"
       />
     </>
   )

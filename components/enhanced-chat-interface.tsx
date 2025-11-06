@@ -20,6 +20,7 @@ import {
   Sparkles,
   Link, // Link 아이콘 추가
   HelpCircle, // HelpCircle 아이콘 추가
+
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -39,6 +40,7 @@ import Sidebar from "./sidebar"
 import CalendarModal from "./calendar-modal"
 import ReactMarkdown from "react-markdown"
 import { TutorialOverlay } from "./tutorial-overlay"
+
 
 
 
@@ -209,7 +211,7 @@ export default function EnhancedChatInterface() {
                   <div className="absolute top-1.5 left-1.5 w-4 h-4 bg-white/20 rounded-full blur-lg"></div>
                 </div>
 
-                
+
               </div>
               <div>
                 <h1 className="text-lg font-semibold">한경국립대학교 AI 챗봇</h1>
@@ -227,6 +229,7 @@ export default function EnhancedChatInterface() {
             >
               <HelpCircle className="w-4 h-4" />
             </Button>
+
 
             {/* Chat Controls */}
             <DropdownMenu>
@@ -315,8 +318,6 @@ export default function EnhancedChatInterface() {
                     {/* Shine effect */}
                     <div className="absolute top-1 left-1 w-3 h-3 bg-white/20 rounded-full blur-md"></div>
                   </div>
-
-
                 </div>
               )}
 
@@ -356,6 +357,7 @@ $1`)
                         .trim()}
                     </ReactMarkdown>
                   </div>
+
                 </div>
 
                 {/* Message Actions */}
@@ -430,7 +432,6 @@ $1`)
                   <div className="absolute top-1 left-1 w-3 h-3 bg-white/20 rounded-full blur-md"></div>
                 </div>
 
-                
               </div>
               <div className="bg-card border p-3 rounded-2xl">
                 <div className="flex items-center space-x-1">
@@ -450,8 +451,6 @@ $1`)
 
           <div ref={messagesEndRef} />
         </div>
-
-        
 
         {/* Input Area */}
         <div className="p-4 bg-card border-t">
@@ -473,14 +472,6 @@ $1`)
 
       {/* Calendar Modal */}
       <CalendarModal open={showCalendar} onOpenChange={setShowCalendar} />
-
-      {/* Tutorial Overlay */}
-      {showTutorialOverlay && (
-        <TutorialOverlay
-          isOpen={showTutorialOverlay}
-          onClose={() => setShowTutorialOverlay(false)}
-        />
-      )}
     </div>
   )
 }

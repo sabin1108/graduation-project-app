@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, ChevronLeft, ChevronRight, GraduationCap, BookOpen, Trophy, Users, Clock } from "lucide-react"
 import { useState, useMemo, useCallback, useRef, useEffect } from "react"
+
 import {
   format,
   addMonths,
@@ -234,11 +235,14 @@ const getEventTypeConfig = (type: string) => {
 export default function CalendarModal({ open, onOpenChange }: CalendarModalProps) {
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+
   const [dynamicCellHeight, setDynamicCellHeight] = useState(128) // Default to 128
   const dayCellRef = useRef<HTMLButtonElement>(null) // Ref for a day cell
 
+
   const goToPreviousMonth = () => setCurrentDate(subMonths(currentDate, 1))
   const goToNextMonth = () => setCurrentDate(addMonths(currentDate, 1))
+
 
   // Add useEffect to measure cell height
   useEffect(() => {
@@ -246,6 +250,7 @@ export default function CalendarModal({ open, onOpenChange }: CalendarModalProps
       setDynamicCellHeight(dayCellRef.current.offsetHeight)
     }
   }, [currentDate, dayCellRef.current?.offsetHeight]) // Re-measure if currentDate changes or ref's height changes
+
 
   const { weeks, eventLayouts } = useMemo(() => {
     const monthStart = startOfMonth(currentDate)
@@ -311,7 +316,9 @@ export default function CalendarModal({ open, onOpenChange }: CalendarModalProps
     }
 
     return { weeks, eventLayouts }
+
   }, [currentDate, dynamicCellHeight])
+
 
   const getEventsForDate = useCallback((date: Date) => {
     return academicEventsData.filter((event) => date >= event.startDate && date <= event.endDate)
@@ -321,7 +328,10 @@ export default function CalendarModal({ open, onOpenChange }: CalendarModalProps
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
+
       <DialogContent className="w-full max-w-full max-h-[95vh] sm:max-h-[90vh] overflow-hidden bg-gradient-to-br from-slate-50 to-white border-0 shadow-2xl">
+
+
         <DialogHeader className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white -m-6 mb-0 p-5 rounded-t-lg">
           <DialogTitle className="flex items-center gap-3 text-lg font-bold">
             <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
@@ -331,7 +341,9 @@ export default function CalendarModal({ open, onOpenChange }: CalendarModalProps
           </DialogTitle>
         </DialogHeader>
 
+
         <div className="flex flex-col md:flex-row gap-4 md:gap-6 p-4 md:p-5 h-auto md:h-[calc(90vh-100px)]">
+
           {/* Calendar Section */}
           <div className="flex-1 bg-white rounded-xl shadow-lg border border-gray-100 p-5 overflow-hidden">
             {/* Calendar Header */}
@@ -378,7 +390,9 @@ export default function CalendarModal({ open, onOpenChange }: CalendarModalProps
             </div>
 
             {/* Calendar Grid Container - 크기 제한 */}
+
             <div className="w-full h-auto max-w-full overflow-x-auto">
+
               <div className="relative w-full">
                 <div className="grid grid-cols-7 border border-gray-200 rounded-lg overflow-hidden w-full">
                   {/* Day cells */}
@@ -390,6 +404,7 @@ export default function CalendarModal({ open, onOpenChange }: CalendarModalProps
                         onClick={() => setSelectedDate(day)}
                         className={cn(
                           "aspect-square border-r border-b border-gray-100 transition-all duration-200 hover:bg-gray-50 relative group overflow-hidden w-full",
+
                           !isSameMonth(day, currentDate) && "text-gray-300 bg-gray-50/50",
                           isToday(day) && "bg-gradient-to-br from-indigo-50 to-purple-50 border-indigo-200",
                           selectedDate &&
@@ -426,6 +441,7 @@ export default function CalendarModal({ open, onOpenChange }: CalendarModalProps
                     const config = getEventTypeConfig(event.type)
 
                     const cellHeight = dynamicCellHeight
+
                     const dateAreaHeight = 32
                     const availableHeight = cellHeight - dateAreaHeight - 8
                     const eventHeight = 12
@@ -464,6 +480,7 @@ export default function CalendarModal({ open, onOpenChange }: CalendarModalProps
 
           {/* Event Details Sidebar */}
           <div className="w-full md:w-80 bg-white rounded-xl shadow-lg border border-gray-100 p-5 overflow-hidden flex flex-col">
+
             <div className="mb-5">
               <h3 className="text-lg font-bold text-gray-800 mb-2 flex items-center gap-2">
                 <Clock className="h-4 w-4 text-indigo-600" />
