@@ -27,7 +27,7 @@ export async function GET(req: NextRequest) {
 
     const textData = await res.text();
 
-<<<<<<< HEAD
+
     // Try to parse as JSON first
     try {
         const jsonData = JSON.parse(textData);
@@ -45,11 +45,7 @@ export async function GET(req: NextRequest) {
     if (lines.length < 2) {
       // It was not JSON and not a valid markdown table.
       console.error("Data is not a valid markdown table:", textData);
-=======
-    // Markdown table parser
-    const lines = textData.split('\n').filter(line => line.trim() !== '');
-    if (lines.length < 2) {
->>>>>>> 7105a6c75fde40d7f4332a2f059d31dd2b497598
+
       return NextResponse.json({ error: "데이터 형식이 올바르지 않습니다." }, { status: 500 });
     }
 
@@ -65,12 +61,9 @@ export async function GET(req: NextRequest) {
       return rowObject;
     });
 
-<<<<<<< HEAD
+
     return NextResponse.json(parsedData);
-=======
-    const data = { content: parsedData };
-    return NextResponse.json(data);
->>>>>>> 7105a6c75fde40d7f4332a2f059d31dd2b497598
+
   } catch (err) {
     console.error("프록시 서버 에러:", err);
     return NextResponse.json({ error: "프록시 요청 실패" }, { status: 500 });

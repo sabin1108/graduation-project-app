@@ -14,20 +14,8 @@ export default function LoadingLogo() {
 
         {/* Bot Icon */}
         <Bot className="relative w-4 h-4 text-primary-foreground" strokeWidth={1.5} />
-<<<<<<< HEAD
       </div>
       
-=======
-
-        {/* Shine effect */}
-        <div className="absolute top-1 left-1 w-3 h-3 bg-white/20 rounded-full blur-md"></div>
-      </div>
-
-      {/* Sparkle badge */}
-      <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-gradient-to-br from-secondary to-secondary/80 rounded-full flex items-center justify-center shadow-lg border border-background">
-        <Sparkles className="w-2 h-2 text-secondary-foreground" />
-      </div>
->>>>>>> 7105a6c75fde40d7f4332a2f059d31dd2b497598
     </div>
   );
 }

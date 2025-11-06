@@ -45,14 +45,7 @@ export default function LoadingScreen() {
               <div className="absolute top-4 left-4 w-12 h-12 bg-white/20 rounded-full blur-xl"></div>
             </div>
 
-<<<<<<< HEAD
             
-=======
-            {/* Sparkle badge */}
-            <div className="absolute -top-1 -right-1 w-10 h-10 bg-gradient-to-br from-secondary to-secondary/80 rounded-full flex items-center justify-center shadow-xl border-2 border-background">
-              <Sparkles className="w-5 h-5 text-secondary-foreground" />
-            </div>
->>>>>>> 7105a6c75fde40d7f4332a2f059d31dd2b497598
           </div>
         </div>
       </div>
