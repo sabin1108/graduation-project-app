@@ -241,8 +241,8 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, onCalen
           <div className="p-4 pb-0">
             <h3 className="text-sm font-medium text-gray-700 mb-2">CAMPUS NEWS</h3>
             <ImageCarousel
-              images={carouselImages}
-              height="h-80"
+              images={carouselImages} // 이미지 배열
+              height="h-96" // 이미지 높이를 h-80에서 h-96으로 변경하여 더 크게 만듭니다.
               onImageClick={(src, link) => openImageModal(src, link)}
             />
             <div className="mt-3 p-3 bg-gray-50 rounded-lg text-xs text-gray-600">
@@ -384,6 +384,7 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen, onCalen
         onClose={closeImageModal}
         imageUrl={selectedImageUrl}
         link={selectedImageLink}
+        alt="한경대 포스터"
       />
     </>
   )
